@@ -14,12 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
-from soundkit import views  # Import views from your soundkit app
+from soundkit import views  # Import views from soundkit app
+from django.conf import settings  # New import for static files
+from django.conf.urls.static import static  # New import for static files
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),  # URL for the home page
     path('soundkits/', views.soundkit_list, name='soundkit_list'),  # URL for the sound kit listing page
 ]
+
+# Serving static files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
