@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from soundkit import views  # Import views from your soundkit app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),  # URL for the home page
+    path('soundkits/', views.soundkit_list, name='soundkit_list'),  # URL for the sound kit listing page
 ]
