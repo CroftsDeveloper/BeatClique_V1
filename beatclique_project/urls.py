@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from soundkit import views as soundkit_views  # Import views from soundkit app
 from accounts import views as accounts_views  # Import views from accounts app
+from django.contrib.auth import views as auth_views  # Import Django's auth views
 from django.conf import settings  # Import for static files
 from django.conf.urls.static import static  # Import for static files
 
@@ -27,6 +28,8 @@ urlpatterns = [
     path('', soundkit_views.home, name='home'),  # URL for the home page
     path('soundkits/', soundkit_views.soundkit_list, name='soundkit_list'),  # URL for the sound kit listing page
     path('register/', accounts_views.register, name='register'),  # URL for the user registration page
+    # login URL
+    path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
 ]
 
 # Serving static files during development
