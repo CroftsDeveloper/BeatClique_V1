@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Vendor Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Vendor Dashboard</h1>
+    <p>Welcome to the BeatClique dashboard. Here's an overview of the sound kits.</p>
+
+    <div>
+        <h2>Sound Kits</h2>
+        <ul>
+            {% for soundkit in soundkits %}
+            <li>
+                {{ soundkit.name }} - £{{ soundkit.price }}
+                <a href="{% url 'edit_soundkit' soundkit.id %}">Edit</a> | 
+                <a href="{% url 'delete_soundkit' soundkit.id %}">Delete</a>
+            </li>
+            {% empty %}
+            <li>No sound kits available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <a href="{% url 'add_soundkit' %}">Add New Sound Kit</a>
+</div>
+{% endblock %}

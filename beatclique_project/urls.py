@@ -16,20 +16,22 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from soundkit import views as soundkit_views  # Import views from soundkit app
-from accounts import views as accounts_views  # Import views from accounts app
-from django.contrib.auth import views as auth_views  # Import Django's auth views
-from django.conf import settings  # Import for static files
-from django.conf.urls.static import static  # Import for static files
+from django.urls import path, include  # Added 'include' to import
+from soundkit import views as soundkit_views
+from accounts import views as accounts_views
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', soundkit_views.home, name='home'),  # URL for the home page
-    path('soundkits/', soundkit_views.soundkit_list, name='soundkit_list'),  # URL for the sound kit listing page
-    path('register/', accounts_views.register, name='register'),  # URL for the user registration page
-    # login URL
-    path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    path('', soundkit_views.home, name='home'),  # Home page URL
+    path('soundkits/', soundkit_views.soundkit_list, name='soundkit_list'),  # Sound kits listing page URL
+    path('register/', accounts_views.register, name='register'),  # User registration page URL
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),  # User login page 
+
+    # Vendor app URLs
+    path('vendor/', include('vendor.urls')), # Vendor app URL
 ]
 
 # Serving static files during development

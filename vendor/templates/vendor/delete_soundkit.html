@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Delete Sound Kit{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Delete Sound Kit</h1>
+    <p>Are you sure you want to delete "{{ soundkit.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'vendor_dashboard' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

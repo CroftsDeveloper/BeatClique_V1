@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'soundkit',
-    'accounts',  # Include the custom user app
+    'accounts',
+    'vendor',
 ]
 
 MIDDLEWARE = [

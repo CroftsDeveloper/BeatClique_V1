@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Sound Kit{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Edit Sound Kit</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update Sound Kit</button>
+    </form>
+</div>
+{% endblock %}
