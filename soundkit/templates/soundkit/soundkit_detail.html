@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sound Kit Details</title>
-</head>
-<body>
-    <h1>Sound Kit Name</h1>
-    <!-- Placeholder for sound kit details -->
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ soundkit.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="soundkit-detail">
+        <h1>{{ soundkit.name }}</h1>
+        <img src="{{ soundkit.image.url }}" alt="{{ soundkit.name }}" style="max-width: 100%;">
+        <p>{{ soundkit.description }}</p>
+        <p>Price: £{{ soundkit.price }}</p>
+        <!-- Placeholder for Buy Now button -->
+        <a href="#" class="btn btn-primary">Preview</a>
+        <a href="#" class="btn btn-success">Buy Now</a>
+    </div>
+</div>
+{% endblock %}

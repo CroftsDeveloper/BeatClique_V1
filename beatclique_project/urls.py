@@ -16,8 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include  # Added 'include' to import
-from soundkit import views as soundkit_views
+from django.urls import path, include 
 from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
@@ -25,13 +24,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', soundkit_views.home, name='home'),  # Home page URL
-    path('soundkits/', soundkit_views.soundkit_list, name='soundkit_list'),  # Sound kits listing page URL
+    path('', include('soundkit.urls'), name='home'),  # 'soundkit.urls' for the home page
+    path('soundkits/', include('soundkit.urls')),  # 'soundkit.urls' for the sound kits listing page
     path('register/', accounts_views.register, name='register'),  # User registration page URL
-    path('accounts/login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),  # User login page 
-
-    # Vendor app URLs
-    path('vendor/', include('vendor.urls')), # Vendor app URL
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),  # User login page URL
+    path('vendor/', include('vendor.urls')),  # Vendor app URLs
 ]
 
 # Serving static files during development
