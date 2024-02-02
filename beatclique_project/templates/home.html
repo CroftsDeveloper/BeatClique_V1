@@ -3,24 +3,13 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<nav>
-    <!-- Navigation bar items -->
-    <a href="{% url 'soundkit_list' %}">Explore Kits</a>
-    <!-- Add other navigation links here -->
-    <a href="{% url 'register' %}" class="sign-up-btn">Sign Up</a>
-</nav>
 
 <header class="hero-section">
     <h1>Welcome to BeatClique</h1>
-        <li>Find the Perfect Sound Kit</li>
-        <li>Discover New Sounds</li>
-        <li>Elevate Your Music to New Heights</li>
-        <p>Explore our curated collection of high-quality sound kits designed to enhance your music production. Each kit is made to provide you with the best tools and sounds for your creative journey.</p>
-    <ul>
-    </ul>
+    <p>Explore our curated collection of high-quality sound kits designed to enhance your music production. Each kit is made to provide you with the best tools and sounds for your creative journey.</p>
     <a href="{% url 'soundkit_list' %}" class="cta-btn">Explore Now</a>
 </header>
 
-<!-- Additional sections can go here -->
+<!-- Testimonial and CTA sections to be added -->
 
 {% endblock %}
