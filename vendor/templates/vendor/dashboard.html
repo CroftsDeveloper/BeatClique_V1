@@ -1,28 +1,24 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'vendor/base_vendor.html' %}
+{% load i18n %}
 
-{% block title %}Vendor Dashboard{% endblock %}
-
-{% block content %}
+{% block vendor_content %}
 <div class="container mt-4">
-    <h1>Vendor Dashboard</h1>
-    <p>Welcome to the BeatClique dashboard. Here's an overview of your sound kits.</p>
-
+    <h1>{% trans "Vendor Dashboard" %}</h1>
+    <p>{% trans "Welcome to your dashboard. Here's an overview of your sound kits." %}</p>
     <div>
-        <h2>Sound Kits</h2>
+        <h2>{% trans "Sound Kits" %}</h2>
         <ul>
             {% for soundkit in soundkits %}
             <li>
                 {{ soundkit.name }} - £{{ soundkit.price }}
-                <a href="{% url 'edit_soundkit' soundkit.id %}">Edit</a> | 
-                <a href="{% url 'delete_soundkit' soundkit.id %}">Delete</a>
+                <a href="{% url 'edit_soundkit' soundkit.id %}">{% trans "Edit" %}</a> |
+                <a href="{% url 'delete_soundkit' soundkit.id %}">{% trans "Delete" %}</a>
             </li>
             {% empty %}
-            <li>No sound kits available.</li>
+            <li>{% trans "No sound kits available." %}</li>
             {% endfor %}
         </ul>
+        <a href="{% url 'add_soundkit' %}" class="btn btn-primary mt-3">{% trans "Add New Sound Kit" %}</a>
     </div>
-
-    <a href="{% url 'add_soundkit' %}">Add New Sound Kit</a>
 </div>
-{% endblock %}
+{% endblock vendor_content %}

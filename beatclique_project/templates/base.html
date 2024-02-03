@@ -7,57 +7,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}BeatClique{% endblock title %}</title>
-    <!-- Linking to the project's stylesheet  -->
+    <!-- Linking to the project's stylesheet for consistent styling -->
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <!-- Bootstrap CSS -->
+    <!-- Including Bootstrap CSS for styling and layout -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
-        <!-- Navigation bar setup for site-wide navigation links -->
+        <!-- Navigation bar setup for dynamic site-wide navigation based on user role -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <!-- Branding link to project's home which varies based on user role -->
-                <a class="navbar-brand" href="{% url 'home' %}">BeatClique</a>
-                <!-- Responsive toggle for navigation bar on smaller screens -->
+                <!-- Branding link dynamically directs based on user role -->
+                <a class="navbar-brand" href="{% if request.user.is_superuser %}{% url 'vendor_dashboard' %}{% else %}{% url 'home' %}{% endif %}">BeatClique</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- Navigation links, displayed differently based on user role -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         {% if request.user.is_superuser %}
-                        <!-- Explicitly showing Vendor Dashboard for superusers -->
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'vendor_dashboard' %}active{% endif %}" href="{% url 'vendor_dashboard' %}">{% trans "Vendor Dashboard" %}</a>
-                        </li>
+                            {% if request.resolver_match.url_name != 'vendor_dashboard' %}
+                                <!-- Dashboard link for vendors, positioned first when not on the dashboard -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'vendor_dashboard' %}">{% trans "Dashboard" %}</a>
+                                </li>
+                            {% endif %}
+                            <!-- Sound Kits link for vendors, follows Dashboard when applicable -->
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %}" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
+                            </li>
+                        {% else %}
+                            <!-- Non-vendor users see Sound Kits link without Dashboard option -->
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %}" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
+                            </li>
                         {% endif %}
-                        {% if not request.user.is_superuser %}
-                        <!-- Home link shown only to non-superusers -->
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">{% trans "Home" %}</a>
-                        </li>
-                        {% endif %}
-                        <!-- Sound Kits link accessible to all users -->
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %}" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
-    <!-- Main content area where page-specific content will be  -->
+    <!-- Main content area for dynamic page-specific content -->
     {% block content %}
-    {% endblock %}
-
-    <!-- Footer section -->
+    {% endblock content %}
+    <!-- Footer section for site-wide consistency -->
     <footer class="text-center mt-4">
         <p>&copy; 2024 BeatClique. All rights reserved.</p>
     </footer>
-
-    <!-- Bootstrap JavaScript included for interactive components within Bootstrap -->
+    <!-- Bootstrap JavaScript for responsive and interactive components -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <!-- Main content block for vendor-specific pages -->
+    <div class="container mt-4">
+        {% block vendor_content %}
+        <!-- Placeholder for vendor-specific content -->
+        {% endblock vendor_content %}
+    </div>
+{% endblock content %}
