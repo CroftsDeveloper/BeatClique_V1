@@ -3,11 +3,12 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
-<header class="hero-section">
+<!-- Main hero section promoting the core function of BeatClique -->
+<header class="hero-section" role="banner">
     <h1>Welcome to BeatClique</h1>
     <p>Explore our curated collection of high-quality sound kits designed to enhance your music production. Each kit is made to provide you with the best tools and sounds for your creative journey.</p>
-    <a href="{% url 'soundkit_list' %}" class="cta-btn">Explore Now</a>
+    <!-- Call-to-action button for users to explore sound kits -->
+    <a href="{% url 'soundkit_list' %}" class="cta-btn" role="button">Explore Now</a>
 </header>
 
 <!-- Testimonial and CTA sections to be added -->

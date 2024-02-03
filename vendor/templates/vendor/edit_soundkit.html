@@ -4,11 +4,13 @@
 {% block title %}Edit Sound Kit{% endblock %}
 
 {% block content %}
+<!-- Container for the edit sound kit form -->
 <div class="container mt-4">
     <h1>Edit Sound Kit</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        <!-- Button to submit updated information -->
         <button type="submit" class="btn btn-primary">Update Sound Kit</button>
     </form>
 </div>

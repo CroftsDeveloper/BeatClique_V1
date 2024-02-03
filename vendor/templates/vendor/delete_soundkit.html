@@ -4,11 +4,14 @@
 {% block title %}Delete Sound Kit{% endblock %}
 
 {% block content %}
+<!-- Container for delete confirmation -->
 <div class="container mt-4">
     <h1>Delete Sound Kit</h1>
+    <!-- Confirmation message -->
     <p>Are you sure you want to delete "{{ soundkit.name }}"?</p>
     <form method="post">
         {% csrf_token %}
+        <!-- Buttons for confirm or cancel -->
         <button type="submit" class="btn btn-danger">Delete</button>
         <a href="{% url 'vendor_dashboard' %}" class="btn btn-secondary">Cancel</a>
     </form>

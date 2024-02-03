@@ -4,23 +4,30 @@
 {% block title %}Sound Kits{% endblock %}
 
 {% block content %}
+<!-- Container for listing all available sound kits -->
 <div class="container mt-4">
     <h2>Available Sound Kits</h2>
     <div class="row">
         {% for soundkit in soundkits %}
         <div class="col-md-4 mb-4">
+            <!-- Each card represents a sound kit -->
             <div class="card" style="width: 18rem;">
-                <img src="{{ soundkit.image.url }}" class="card-img-top" alt="{{ soundkit.name }}">
+                <!-- Image of the sound kit -->
+                <img src="{{ soundkit.image.url }}" class="card-img-top" alt="Cover image of {{ soundkit.name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ soundkit.name }}</h5>
+                    <!-- Sound kit description with a length limit -->
                     <p class="card-text">{{ soundkit.description|truncatechars:100 }}</p>
+                    <!-- Displaying price of the sound kit -->
                     <p class="card-text">Price: £{{ soundkit.price }}</p>
+                    <!-- Links to more information and purchase options for the sound kit -->
                     <a href="{% url 'soundkit_detail' soundkit.pk %}" class="btn btn-primary">More Info</a>
                     <a href="#" class="btn btn-success">Buy Now</a>
                 </div>
             </div>
         </div>
         {% empty %}
+        <!-- Display message when no sound kits are available -->
         <p>No sound kits available.</p>
         {% endfor %}
     </div>

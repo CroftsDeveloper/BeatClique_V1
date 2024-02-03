@@ -4,15 +4,18 @@
 {% block title %}{{ soundkit.name }}{% endblock %}
 
 {% block content %}
+<!-- Detail view for individual sound kits -->
 <div class="container mt-4">
-    <div class="soundkit-detail">
+    <div class="soundkit-detail" role="article">
         <h1>{{ soundkit.name }}</h1>
-        <img src="{{ soundkit.image.url }}" alt="{{ soundkit.name }}" style="max-width: 100%;">
+        <!-- Responsive image display of the sound kit -->
+        <img src="{{ soundkit.image.url }}" alt="Image of {{ soundkit.name }}" style="max-width: 100%;">
         <p>{{ soundkit.description }}</p>
+        <!-- Displaying the price of the sound kit -->
         <p>Price: £{{ soundkit.price }}</p>
-        <!-- Placeholder for Buy Now button -->
-        <a href="#" class="btn btn-primary">Preview</a>
-        <a href="#" class="btn btn-success">Buy Now</a>
+        <!-- Interactive buttons for previewing and purchasing the sound kit -->
+        <a href="#" class="btn btn-primary" role="button">Preview</a>
+        <a href="#" class="btn btn-success" role="button">Buy Now</a>
     </div>
 </div>
 {% endblock %}

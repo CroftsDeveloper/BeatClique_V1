@@ -2,15 +2,18 @@
 {% load i18n %}
 
 {% block vendor_content %}
+<!-- Container for the vendor dashboard content -->
 <div class="container mt-4">
     <h1>{% trans "Vendor Dashboard" %}</h1>
     <p>{% trans "Welcome to your dashboard. Here's an overview of your sound kits." %}</p>
     <div>
         <h2>{% trans "Sound Kits" %}</h2>
+        <!-- List of sound kits -->
         <ul>
             {% for soundkit in soundkits %}
             <li>
                 {{ soundkit.name }} - £{{ soundkit.price }}
+                <!-- Links to edit and delete sound kits -->
                 <a href="{% url 'edit_soundkit' soundkit.id %}">{% trans "Edit" %}</a> |
                 <a href="{% url 'delete_soundkit' soundkit.id %}">{% trans "Delete" %}</a>
             </li>
@@ -18,6 +21,7 @@
             <li>{% trans "No sound kits available." %}</li>
             {% endfor %}
         </ul>
+        <!-- Button to add a new sound kit -->
         <a href="{% url 'add_soundkit' %}" class="btn btn-primary mt-3">{% trans "Add New Sound Kit" %}</a>
     </div>
 </div>

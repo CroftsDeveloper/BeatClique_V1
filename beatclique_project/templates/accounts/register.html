@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
+{% block title %}Register - BeatClique{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <h2>Register</h2>
+    <!-- Registration form with CSRF token-->
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <!-- Dynamically generated form fields -->
+        <div class="mb-3">
+            {{ form.as_p }}
+        </div>
+        <!-- Submit button for registration -->
         <button type="submit" class="btn btn-success">Register</button>
     </form>
 </div>

@@ -1,22 +1,29 @@
 {% extends 'base.html' %}
 
+{# Page-specific title for improved SEO #}
+{% block title %}Login - BeatClique{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
     <h2>Login</h2>
+    <!-- Form for login -->
     <form method="post">
         {% csrf_token %}
         <div class="mb-3">
             <label for="username" class="form-label">Username:</label>
             <input type="text" class="form-control" name="username" required id="username">
         </div>
+        <!-- Password field -->
         <div class="mb-3">
             <label for="password" class="form-label">Password:</label>
             <input type="password" class="form-control" name="password" required id="password">
         </div>
+        <!-- Submit button for the form -->
         <button type="submit" class="btn btn-primary">Login</button>
         {% if error %}
             <div class="alert alert-danger mt-3">{{ error }}</div>
         {% endif %}
     </form>
 </div>
+<!-- Main content area ends -->
 {% endblock %}

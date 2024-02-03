@@ -5,8 +5,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Responsive viewport meta tag for improved accessibility -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO: Dynamic title block for improved search engine indexing -->
     <title>{% block title %}BeatClique{% endblock title %}</title>
+    <!-- Description meta tag for SEO -->
+    <meta name="description" content="BeatClique - Explore curated collection of high-quality sound kits for your music production.">
+    <!-- Author meta tag for SEO -->
+    <meta name="author" content="BeatClique">
     <!-- Linking to the project's stylesheet for consistent styling -->
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <!-- Including Bootstrap CSS for styling and layout -->
@@ -15,7 +21,7 @@
 <body>
     <header>
         <!-- Navigation bar setup for dynamic site-wide navigation based on user role -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Main navigation">
             <div class="container-fluid">
                 <!-- Branding link dynamically directs based on user role -->
                 <a class="navbar-brand" href="{% if request.user.is_superuser %}{% url 'vendor_dashboard' %}{% else %}{% url 'home' %}{% endif %}">BeatClique</a>
