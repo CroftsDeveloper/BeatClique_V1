@@ -1,3 +1,4 @@
+# vendor/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
@@ -6,6 +7,7 @@ from soundkit.models import SoundKit
 
 @login_required
 def dashboard(request):
+    # TODO: implement a group-based access control for vendor functionalities
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     soundkits = SoundKit.objects.all()
@@ -13,6 +15,7 @@ def dashboard(request):
 
 @login_required
 def add_soundkit(request):
+    # TODO: Review if additional user roles need access to this functionality
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     if request.method == 'POST':
@@ -26,6 +29,7 @@ def add_soundkit(request):
 
 @login_required
 def edit_soundkit(request, pk):
+    # TODO: Ensure that only authorized users can edit sound kits
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     soundkit = get_object_or_404(SoundKit, pk=pk)
@@ -40,6 +44,7 @@ def edit_soundkit(request, pk):
 
 @login_required
 def delete_soundkit(request, pk):
+    # TODO: Add confirmation dialogue before deletion to improve UX
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     soundkit = get_object_or_404(SoundKit, pk=pk)
