@@ -7,10 +7,12 @@
 <!-- Container for the add sound kit form -->
 <div class="container mt-4">
     <h1>Add New Sound Kit</h1>
+    <!-- Enctype attribute to handle file uploads properly -->
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <!-- Dynamically generated form fields, including ZIP file uploads -->
         {{ form.as_p }}
-        <!-- Button to submit form -->
+        <!-- Button to submit form, initiating the upload process -->
         <button type="submit" class="btn btn-primary">Add Sound Kit</button>
     </form>
 </div>

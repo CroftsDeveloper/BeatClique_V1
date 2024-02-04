@@ -1,28 +1,35 @@
 {% extends 'vendor/base_vendor.html' %}
 {% load i18n %}
+{% load static %}  <!-- Ensure static files are loaded for CSS/JS -->
 
 {% block vendor_content %}
 <!-- Container for the vendor dashboard content -->
 <div class="container mt-4">
     <h1>{% trans "Vendor Dashboard" %}</h1>
     <p>{% trans "Welcome to your dashboard. Here's an overview of your sound kits." %}</p>
-    <div>
-        <h2>{% trans "Sound Kits" %}</h2>
-        <!-- List of sound kits -->
-        <ul>
-            {% for soundkit in soundkits %}
-            <li>
-                {{ soundkit.name }} - £{{ soundkit.price }}
-                <!-- Links to edit and delete sound kits -->
-                <a href="{% url 'edit_soundkit' soundkit.id %}">{% trans "Edit" %}</a> |
-                <a href="{% url 'delete_soundkit' soundkit.id %}">{% trans "Delete" %}</a>
-            </li>
-            {% empty %}
-            <li>{% trans "No sound kits available." %}</li>
-            {% endfor %}
-        </ul>
-        <!-- Button to add a new sound kit -->
-        <a href="{% url 'add_soundkit' %}" class="btn btn-primary mt-3">{% trans "Add New Sound Kit" %}</a>
+    <div class="row">
+        <!-- Using a grid layout for sound kits -->
+        {% for soundkit in soundkits %}
+        <div class="col-md-2 mb-4">
+            <div class="card h-100">
+                <img src="{{ soundkit.image.url }}" class="card-img-top" alt="{{ soundkit.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ soundkit.name }}</h5>
+                    <p class="card-text">£{{ soundkit.price }}</p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{% url 'edit_soundkit' soundkit.id %}" class="btn btn-outline-primary btn-sm">{% trans "Edit" %}</a>
+                    <a href="{% url 'delete_soundkit' soundkit.id %}" class="btn btn-outline-danger btn-sm">{% trans "Delete" %}</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>{% trans "No sound kits available." %}</p>
+        </div>
+        {% endfor %}
     </div>
+    <!-- Button to add a new sound kit -->
+    <a href="{% url 'add_soundkit' %}" class="btn btn-primary mt-3">{% trans "Add New Sound Kit" %}</a>
 </div>
 {% endblock vendor_content %}

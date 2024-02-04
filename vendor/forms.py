@@ -5,4 +5,4 @@ from soundkit.models import SoundKit
 class SoundKitForm(forms.ModelForm):
     class Meta:
         model = SoundKit
-        fields = ['name', 'description', 'price', 'image', 'sound_file']
+        fields = ['name', 'description', 'price', 'image', 'sound_file', 'zip_file']
