@@ -21,6 +21,7 @@
     text-align: center; /* Center the text */
 }
 
+
 /* Responsive grid adjustments */
 @media (max-width: 767px) {
     .col-md-4 {
@@ -37,3 +38,7 @@
 }
 
 /* Additional custom styles will be added here */
+
+.checked {
+    color: #FFD700 !important;
+}

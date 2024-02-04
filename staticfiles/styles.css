@@ -37,3 +37,7 @@
 }
 
 /* Additional custom styles will be added here */
+
+.checked {
+    color: #FFD700;
+}
