@@ -7,16 +7,17 @@
     <meta charset="UTF-8">
     <!-- Responsive viewport meta tag for improved accessibility -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO: Dynamic title block for improved search engine indexing -->
+    <!-- SEO: Dynamic title block for improved SEI-->
     <title>{% block title %}BeatClique{% endblock title %}</title>
     <!-- Description meta tag for SEO -->
     <meta name="description" content="BeatClique - Explore curated collection of high-quality sound kits for your music production.">
-    <!-- Author meta tag for SEO -->
+    <!-- Meta tag for SEO -->
     <meta name="author" content="BeatClique">
     <!-- Linking to the project's stylesheet for consistent styling -->
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <!-- Including Bootstrap CSS for styling and layout -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    {% block extra_css %}{% endblock %} <!-- Allows for additional CSS in child templates -->
 </head>
 <body>
     <header>
