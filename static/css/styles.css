@@ -59,6 +59,6 @@ body {
 
 /* Accordion answers */
 .accordion-body {
-    font-weight: bold;
+    font-weight: normal;
     color: #08090a; /* Darker shade for answers */
 }
