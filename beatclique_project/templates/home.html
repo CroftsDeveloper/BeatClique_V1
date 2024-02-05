@@ -2,17 +2,18 @@
 {% load static %}
 
 {% block content %}
-<!-- Hero Section -->
+<!-- Hero Section with Background Image -->
 <section class="hero-section text-center bg-light py-5">
     <div class="container">
-        <h1 class="display-4">Level-up Your Music Production with BeatClique</h1>
-        <p class="lead">Discover a wide range of unique, high-quality sound kits created by our team of music producers. Elevate your music with professionally crafted samples.</p>
+        <h1 class="display-4 text-white">Level-up Your Music Production with BeatClique</h1>
+        <p class="lead text-white">Discover a wide range of unique, high-quality sound kits created by our team of music producers. Elevate your music with professionally crafted samples.</p>
         <div class="my-4">
             <a href="#" class="btn btn-primary me-2">Explore</a>
             <a href="#" class="btn btn-secondary">Sign Up</a>
         </div>
     </div>
 </section>
+
 
 <!-- Testimonials Section -->
 <section class="testimonials py-5 bg-secondary">
@@ -43,6 +44,67 @@
                     <div class="card-body">
                         <p class="card-text">"I would highly recommend these sound kits to any aspiring music producer!"</p>
                         <footer class="blockquote-footer">Alex, DJ <br> <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Frequently Asked Questions Section -->
+<section class="faq-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <div class="accordion" id="faqAccordion">
+            <!-- FAQ 1 -->
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                        Are the products I purchase royalty-free?
+                    </button>
+                </h3>
+                <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Soundkits are royalty-free EXCEPT for major placements (this means 500k+ monthly listeners on Spotify, as well as any sync placements). This means you do not need to split beat sales from Youtube/Beatstars.
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                        What happens if anything gets placed with a sample from us?
+                    </button>
+                </h3>
+                <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We guarantee easy and hassle-free clearance if anything gets placed with a sample from our website
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                        When will I receive my downloads?
+                    </button>
+                </h3>
+                <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Downloads of your purchased products will be instantly generated. If for any reason this does not happen, feel free to email us, and we will get back to you ASAP.
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 4 -->
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                        Are refunds available?
+                    </button>
+                </h3>
+                <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Since our products are digital, we cannot offer refunds for any orders. If you are unsatisfied with your purchase or feel misinformed about a product, send us an email, and we will do our best to work with you.
                     </div>
                 </div>
             </div>
