@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <!-- Hero Section with Background Image -->
 <section class="hero-section text-center py-5">
     <div class="container">
@@ -13,6 +14,7 @@
         </div>
     </div>
 </section>
+
 
 
 <!-- Testimonials Section -->
@@ -51,6 +53,34 @@
     </div>
 </section>
 
+
+<!-- Carousel Section -->
+<section class="carousel-section">
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-3"><img src="{% static 'images/carousel/polo.jpg' %}" class="img-fluid" alt="Polo"></div>
+                    <div class="col-3"><img src="{% static 'images/carousel/rebirth.png' %}" class="img-fluid" alt="Rebirth"></div>
+                    <div class="col-3"><img src="{% static 'images/carousel/resurgence.jpg' %}" class="img-fluid" alt="Resurgence"></div>
+                    <div class="col-3"><img src="{% static 'images/carousel/orbit.png' %}" class="img-fluid" alt="Orbit"></div>
+                </div>
+            </div>
+            <!-- Second set of images -->
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-3"><img src="{% static 'images/carousel/polo.jpg' %}" class="img-fluid" alt="Polo"></div>
+                    <div class="col-3"><img src="{% static 'images/carousel/rebirth.png' %}" class="img-fluid" alt="Rebirth"></div>
+                    <div class="col-3"><img src="{% static 'images/carousel/resurgence.jpg' %}" class="img-fluid" alt="Resurgence"></div>
+                    <div class="col-3"><img src="{% static 'images/carousel/orbit.png' %}" class="img-fluid" alt="Orbit"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel controls can be implemented later if needed -->
+    </div>
+</section>
+
+       
 <!-- Frequently Asked Questions Section -->
 <section class="faq-section py-5">
     <div class="container">

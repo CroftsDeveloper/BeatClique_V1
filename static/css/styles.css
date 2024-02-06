@@ -1,32 +1,23 @@
-/* Base styling */
+/* Global styles */
 body {
     font-family: 'Lato', sans-serif;
-    background-color: #f4f4f4;
-    color: #000000;
+    background-color: #F7F4EE; /* Off White */
+    color: #333333; /* Dark Gray text */
     line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', sans-serif;
-}
-
-.hero-section {
-    background-color: #0a0a0a; /* Obsidian black */
-    color: #ffffff; /* Ensures text is white for contrast */
-}
-
-
 /* Styles for sound kit cards */
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    border-radius: 5px;  /* Rounded corners */
+    border-radius: 5px;
+    background-color: #e1dfda; /* Card Background */
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);  /* Hover effect */
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
 .card img {
@@ -35,53 +26,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-body {
-    padding: 15px;  /* Spacing inside the card */
-    text-align: center;  /* Center the text */
-}
-
-/* Responsive grid adjustments */
-@media (max-width: 767px) {
-    .col-md-4 {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
-@media (max-width: 575px) {
-    .col-md-4 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
+    padding: 15px;
+    text-align: center;
+    background-color: #e1dfda; /* Card Background */
 }
 
 /* Additional custom styles */
 .checked {
-    color: #FFD700;
+    color: #FFD700; /* Gold */
 }
 
 /* Accordion questions */
 .accordion-button {
-    font-weight: 600; /* Make questions bolder */
-    color: #131212; /* Keep the primary color for questions */
-    font-size: 18px; /* Slightly larger font size for questions */
+    font-weight: 600;
+    color: #06140e; /* Navbar Hex Color */
+    font-size: 18px;
 }
 
 /* Accordion answers */
 .accordion-body {
     font-weight: normal;
-    color: #08090a; /* Darker shade for answers */
-    font-style: bold; 
+    color: #333333;
+    font-style: bold;
     padding-left: 20px;
-}
-
-/* Accordion item styling */
-.accordion-item {
-    border-bottom: 1px solid #e3e3e3; /* Adds a light border for separation */
-    padding: 10px 0;
-}
-
-/* Enhance visual cue for expand/collapse */
-.accordion-button::after {
-    content: ''; 
-    font-size: 12px;
 }
