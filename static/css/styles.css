@@ -1,3 +1,10 @@
+
+/* Custom container for a wider layout */
+.container-custom {
+    max-width: 1440px; /* Wider container */
+    margin: 0 auto; /* Center the container */
+}
+
 /* Global styles */
 body {
     font-family: 'Lato', sans-serif;
@@ -36,6 +43,18 @@ body {
     color: #FFD700; /* Gold */
 }
 
+/* Custom styles for rounded images */
+.rounded {
+    border-radius: 10px; /* Rounded corners */
+}
+
+
+/* Testimonials Section styles */
+.testimonials {
+    background-color: #212529 !important; /* Slate Obsidian Gray with !important */
+    padding: 40px 0;
+}
+
 /* Accordion questions */
 .accordion-button {
     font-weight: 600;
@@ -49,4 +68,9 @@ body {
     color: #333333;
     font-style: bold;
     padding-left: 20px;
+}
+
+/* FAQ Section styles */
+.faq-section {
+    background-color: #212529; /* Dark Gray (Bootstrap bg-dark) */
 }

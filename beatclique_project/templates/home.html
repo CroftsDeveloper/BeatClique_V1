@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- Hero Section with Background Image -->
-<section class="hero-section text-center py-5">
+<section class="hero-section text-center py-5 bg-dark">
     <div class="container">
         <h1 class="display-4 text-white">Level-up Your Music Production with BeatClique</h1>
         <p class="lead text-white">Discover a wide range of unique, high-quality sound kits created by our team of music producers. Elevate your music with professionally crafted samples.</p>
@@ -15,6 +15,47 @@
     </div>
 </section>
 
+<!-- Carousel Section -->
+<section class="carousel-section" style="background-color: #212529;">
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row g-1">
+                    <div class="col-3">
+                        <img src="{% static 'images/carousel/polo.jpg' %}" class="img-fluid rounded" alt="Polo">
+                    </div>
+                    <div class="col-3">
+                        <img src="{% static 'images/carousel/rebirth.png' %}" class="img-fluid rounded" alt="Rebirth">
+                    </div>
+                    <div class="col-3">
+                        <img src="{% static 'images/carousel/resurgence.jpg' %}" class="img-fluid rounded" alt="Resurgence">
+                    </div>
+                    <div class="col-3">
+                        <img src="{% static 'images/carousel/orbit.png' %}" class="img-fluid rounded" alt="Orbit">
+                    </div>
+                </div>
+            </div>
+            <!-- Second set of images -->
+            <div class="carousel-item">
+                <div class="row g-1">
+                    <div class="col-3">
+                        <img src="{% static 'images/carousel/polo.jpg' %}" class="img-fluid rounded" alt="Polo">
+                    </div>
+                    <div class="col-3">
+                        <img src="{% static 'images/carousel/rebirth.png' %}" class="img-fluid rounded" alt="Rebirth">
+                    </div>
+                    <div class="col-3">
+                        <img src="{% static 'images/carousel/resurgence.jpg' %}" class="img-fluid rounded" alt="Resurgence">
+                    </div>
+                    <div class="col-3">
+                        <img src="{% static 'images/carousel/orbit.png' %}" class="img-fluid rounded" alt="Orbit">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel controls can be implemented later if needed -->
+    </div>
+</section>
 
 
 <!-- Testimonials Section -->
@@ -53,32 +94,6 @@
     </div>
 </section>
 
-
-<!-- Carousel Section -->
-<section class="carousel-section">
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row">
-                    <div class="col-3"><img src="{% static 'images/carousel/polo.jpg' %}" class="img-fluid" alt="Polo"></div>
-                    <div class="col-3"><img src="{% static 'images/carousel/rebirth.png' %}" class="img-fluid" alt="Rebirth"></div>
-                    <div class="col-3"><img src="{% static 'images/carousel/resurgence.jpg' %}" class="img-fluid" alt="Resurgence"></div>
-                    <div class="col-3"><img src="{% static 'images/carousel/orbit.png' %}" class="img-fluid" alt="Orbit"></div>
-                </div>
-            </div>
-            <!-- Second set of images -->
-            <div class="carousel-item">
-                <div class="row">
-                    <div class="col-3"><img src="{% static 'images/carousel/polo.jpg' %}" class="img-fluid" alt="Polo"></div>
-                    <div class="col-3"><img src="{% static 'images/carousel/rebirth.png' %}" class="img-fluid" alt="Rebirth"></div>
-                    <div class="col-3"><img src="{% static 'images/carousel/resurgence.jpg' %}" class="img-fluid" alt="Resurgence"></div>
-                    <div class="col-3"><img src="{% static 'images/carousel/orbit.png' %}" class="img-fluid" alt="Orbit"></div>
-                </div>
-            </div>
-        </div>
-        <!-- Carousel controls can be implemented later if needed -->
-    </div>
-</section>
 
        
 <!-- Frequently Asked Questions Section -->
@@ -143,10 +158,10 @@
 </section>
 
 <!-- Newsletter Subscription Section -->
-<section class="newsletter-subscribe py-5">
+<section class="newsletter-subscribe py-5 bg-dark">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-8">
+            <div class="col-md-8 mb-0">
                 <form class="form-inline">
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2">
@@ -154,7 +169,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-0">
                 <div class="social-links text-center text-md-end">
                     <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
