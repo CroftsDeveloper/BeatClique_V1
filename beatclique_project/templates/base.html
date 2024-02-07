@@ -42,17 +42,17 @@
                             {% if request.resolver_match.url_name != 'vendor_dashboard' %}
                                 <!-- Dashboard link for vendors, positioned first when not on the dashboard -->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'vendor_dashboard' %}">{% trans "Dashboard" %}</a>
+                                    <a class="nav-link font-weight-bold" href="{% url 'vendor_dashboard' %}">{% trans "Dashboard" %}</a>
                                 </li>
                             {% endif %}
                             <!-- Sound Kits link for vendors, follows Dashboard when applicable -->
                             <li class="nav-item">
-                                <a class="nav-link {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %}" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
+                                <a class="nav-link font-weight-bold {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %}" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
                             </li>
                         {% else %}
                             <!-- Non-vendor users see Sound Kits link without Dashboard option -->
                             <li class="nav-item">
-                                <a class="nav-link {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %}" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
+                                <a class="nav-link font-weight-bold {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %}" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
                             </li>
                         {% endif %}
                     </ul>
