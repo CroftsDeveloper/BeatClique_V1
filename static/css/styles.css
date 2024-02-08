@@ -20,6 +20,30 @@ html, body {
     padding: 0;
 }
 
+/* Hero Section styles */
+/* Define colors for the buttons */
+.explore-button {
+    background-color: #007bff; /* Blue color */
+    border-color: #007bff;
+}
+
+.register-button {
+    background-color: #28a745; /* Green color */
+    border-color: #28a745;
+}
+
+/* On hover, slightly darken the buttons */
+.explore-button:hover {
+    background-color: #0056b3; /* Darker blue */
+    border-color: #0056b3;
+}
+
+.register-button:hover {
+    background-color: #218838; /* Darker green */
+    border-color: #218838;
+}
+
+
 /* Styles for sound kit cards */
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -36,7 +60,7 @@ html, body {
 .card img {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    width: 100%; /* Make sure the image fills the card width */
+    width: 100%; /* Image fills the card width */
 }
 
 .card-body {
@@ -57,40 +81,37 @@ html, body {
 
 /* Testimonials Section styles */
 .testimonials {
-    background-color: #212529 !important; /* Slate Obsidian Gray with !important */
+    background-color: #212529 !important; /* Slate Obsidian Gray */
     padding: 40px 0;
 }
+/* FAQs styles */
 
-/* Accordion questions */
-.accordion-button {
-    font-weight: 600;
-    color: #06140e; /* Navbar Hex Color */
-    font-size: 18px;
-}
-
-/* Accordion answers */
-.accordion-body {
-    font-weight: normal;
-    color: #333333;
-    font-style: bold;
-    padding-left: 20px;
-}
-
-/* FAQ Section styles */
 .faq-section {
     background-color: #212529; /* Dark Gray (Bootstrap bg-dark) */
     padding: 40px 0;
     color: #fff; /* Set text color to white */
 }
+    /* Accordion questions */
+    .accordion-button {
+        font-weight: 600;
+        color: #06140e; /* Navbar Hex Color */
+        font-size: 18px;
+    }
 
-/* Accordion answers */
-.accordion-body {
-    font-weight: normal;
-    color: #0f0f0f; /* Set text color to white */
-    font-style: bolder;
-    padding-left: 20px;
-}
-
+    /* Accordion answers */
+    .accordion-body {
+        font-weight: normal;
+        color: #333333;
+        font-style: bold;
+        padding-left: 20px;
+    }
+    /* Accordion answers */
+    .accordion-body {
+        font-weight: normal;
+        color: #0f0f0f; /* Set text color to white */
+        font-style: bolder;
+        padding-left: 20px;
+    }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -98,7 +119,7 @@ html, body {
         max-width: 100%; /* Adjust to full width on smaller screens */
     }
 
-    /* Add any other responsive styles here */
+    /* Will add other responsive styles here */
     .card {
         margin: 0 0 20px; /* Reduce card margin on smaller screens */
     }

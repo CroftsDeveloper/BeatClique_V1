@@ -12,5 +12,3 @@
       card.style.transform = '';
     });
   });
-
-

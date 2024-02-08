@@ -9,11 +9,14 @@
         <h1 class="display-4 text-white">Level-up Your Music Production with BeatClique</h1>
         <p class="lead text-white">Discover a wide range of unique, high-quality sound kits created by our team of music producers. Elevate your music with professionally crafted samples.</p>
         <div class="my-4">
-            <a href="#" class="btn btn-primary me-2">Explore</a>
-            <a href="#" class="btn btn-secondary">Sign Up</a>
+            <!-- Explore button to point to the soundkit page -->
+            <a href="{% url 'soundkit_list' %}" class="btn btn-primary explore-button me-2">Explore</a>
+            <!-- Register button to point to the register page -->
+            <a href="{% url 'register' %}" class="btn btn-secondary register-button">Register</a>
         </div>
     </div>
 </section>
+
 
 <!-- Carousel Section -->
 <section class="carousel-section" style="background-color: #212529;">
