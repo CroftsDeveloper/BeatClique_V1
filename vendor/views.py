@@ -1,7 +1,7 @@
-# vendor/views.py
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.contrib import messages 
 from .forms import SoundKitForm
 from soundkit.models import SoundKit
 
@@ -22,6 +22,7 @@ def add_soundkit(request):
         form = SoundKitForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Sound kit successfully added.')  # Success message
             return redirect('vendor_dashboard')
     else:
         form = SoundKitForm()
@@ -37,6 +38,7 @@ def edit_soundkit(request, pk):
         form = SoundKitForm(request.POST, request.FILES, instance=soundkit)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Sound kit successfully updated.')  # success message for update
             return redirect('vendor_dashboard')
     else:
         form = SoundKitForm(instance=soundkit)
@@ -50,5 +52,6 @@ def delete_soundkit(request, pk):
     soundkit = get_object_or_404(SoundKit, pk=pk)
     if request.method == 'POST':
         soundkit.delete()
+        messages.success(request, 'Sound kit successfully deleted.')  # Success message for deletion
         return redirect('vendor_dashboard')
     return render(request, 'vendor/delete_soundkit.html', {'soundkit': soundkit})

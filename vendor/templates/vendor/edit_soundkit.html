@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'vendor/base_vendor.html' %}
 {% load static %}
 
 {% block title %}Edit Sound Kit{% endblock %}
@@ -7,6 +7,12 @@
 <!-- Container for the edit sound kit form -->
 <div class="container mt-4">
     <h1>Edit Sound Kit</h1>
+    <!-- Display messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

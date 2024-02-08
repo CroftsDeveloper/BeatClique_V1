@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'vendor/base_vendor.html' %}
 {% load static %}
 
 {% block title %}Delete Sound Kit{% endblock %}
@@ -7,6 +7,12 @@
 <!-- Container for delete confirmation -->
 <div class="container mt-4">
     <h1>Delete Sound Kit</h1>
+    <!-- Display messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     <!-- Confirmation message -->
     <p>Are you sure you want to delete "{{ soundkit.name }}"?</p>
     <form method="post">
