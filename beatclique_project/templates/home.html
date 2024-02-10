@@ -7,7 +7,7 @@
 <section class="hero-section text-center py-3 bg-dark">
     <div class="container">
         <h1 class="display-4 text-white">Level-up Your Music Production with BeatClique</h1>
-        <p class="lead text-white">Discover a wide range of unique, high-quality sound kits created by our team of music producers. Elevate your music with professionally crafted samples.</p>
+        <p class="lead text-white">Discover a wide range of unique, high-quality sound kits created by our team of music producers.</p>
         <div class="my-4">
             <!-- Explore button to point to the soundkit page -->
             <a href="{% url 'soundkit_list' %}" class="btn btn-primary explore-button me-2">Explore</a>
@@ -67,7 +67,7 @@
         <div class="row">
             <!-- Testimonial 1 -->
             <div class="col-md-4 mb-3">
-                <div class="card">
+                <div class="card testimonial-card" id="testimonial1">
                     <div class="card-body">
                         <p class="card-text">"These sound kits have taken my music production to the next level!"</p>
                         <footer class="blockquote-footer">Jordan, Music Producer <br> <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></footer>
@@ -76,7 +76,7 @@
             </div>
             <!-- Testimonial 2 -->
             <div class="col-md-4 mb-3">
-                <div class="card">
+                <div class="card testimonial-card" id="testimonial2">
                     <div class="card-body">
                         <p class="card-text">"BeatClique's sound kits are a game-changer for my music projects!"</p>
                         <footer class="blockquote-footer">Taylor, Beat Maker <br> <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></footer>
@@ -85,7 +85,7 @@
             </div>
             <!-- Testimonial 3 -->
             <div class="col-md-4 mb-3">
-                <div class="card">
+                <div class="card testimonial-card" id="testimonial3">
                     <div class="card-body">
                         <p class="card-text">"I would highly recommend these sound kits to any aspiring music producer!"</p>
                         <footer class="blockquote-footer">Alex, DJ <br> <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span></footer>
@@ -95,6 +95,7 @@
         </div>
     </div>
 </section>
+
 
 <!-- Frequently Asked Questions Section -->
 <section class="faq-section py-0">
