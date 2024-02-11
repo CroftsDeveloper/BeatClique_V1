@@ -5,17 +5,89 @@
 
 {% block content %}
 <!-- Detail view for individual sound kits -->
-<div class="container mt-4">
+<div class="container-fluid bg-dark text-light p-4">
+    <div class="row">
+        <!-- Left column for sound kit image -->
+        <div class="col-md-4">
+            <div class="soundkit-image">
+                <!-- Responsive image display of the sound kit -->
+                <img src="{{ soundkit.image.url }}" alt="Image of {{ soundkit.name }}" class="img-fluid rounded">
+            </div>
+        </div>
+<!-- Right column for sound kit information -->
+<div class="col-md-8">
     <div class="soundkit-detail" role="article">
         <h1>{{ soundkit.name }}</h1>
-        <!-- Responsive image display of the sound kit -->
-        <img src="{{ soundkit.image.url }}" alt="Image of {{ soundkit.name }}" style="max-width: 100%;">
+        <!-- Price placed above the Add to Cart button -->
+        <p class="price">Price: £{{ soundkit.price }}</p>
         <p>{{ soundkit.description }}</p>
-        <!-- Displaying the price of the sound kit -->
-        <p>Price: £{{ soundkit.price }}</p>
-        <!-- Interactive buttons for previewing and purchasing the sound kit -->
-        <a href="#" class="btn btn-primary" role="button">Preview?</a>
-        <a href="#" class="btn btn-success" role="button">Buy Now</a>
+        <!-- Interactive button for purchasing the sound kit -->
+        <div class="text-end">
+            <a href="#" class="btn btn-success" role="button">Add to Cart</a>
+        </div>
     </div>
 </div>
+
+
+<!-- FAQs Section -->
+<section class="faq-section py-4 bg-dark">
+    <div class="container">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <div class="accordion" id="faqAccordion">
+            <!-- FAQ items -->
+            <div class="accordion-item">
+                <!-- FAQ 1 -->
+                <h3 class="accordion-header" id="faqHeading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                        Are the products I purchase royalty-free?
+                    </button>
+                </h3>
+                <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Soundkits are royalty-free EXCEPT for major placements (this means 500k+ monthly listeners on Spotify, as well as any sync placements). This means you do not need to split beat sales from Youtube/Beatstars.
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                        What happens if anything gets placed with a sample from us?
+                    </button>
+                </h3>
+                <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We guarantee easy and hassle-free clearance if anything gets placed with a sample from our website
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                        When will I receive my downloads?
+                    </button>
+                </h3>
+                <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Downloads of your purchased products will be instantly generated. If for any reason this does not happen, feel free to email us, and we will get back to you ASAP.
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 4 -->
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                        Are refunds available?
+                    </button>
+                </h3>
+                <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Since our products are digital, we cannot offer refunds for any orders. If you are unsatisfied with your purchase or feel misinformed about a product, send us an email, and we will do our best to work with you.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

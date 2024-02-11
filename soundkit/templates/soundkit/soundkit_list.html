@@ -4,32 +4,38 @@
 {% block title %}Sound Kits{% endblock %}
 
 {% block content %}
-<!-- Container for listing all available sound kits -->
-<div class="container mt-4">
-    <h2>Available Sound Kits</h2>
-    <div class="row">
-        {% for soundkit in soundkits %}
-        <div class="col-md-4 mb-4">
-            <!-- Each card represents a sound kit -->
-            <div class="card" style="width: 18rem;">
-                <!-- Image of the sound kit -->
-                <img src="{{ soundkit.image.url }}" class="card-img-top" alt="Cover image of {{ soundkit.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ soundkit.name }}</h5>
-                    <!-- Sound kit description with a length limit -->
-                    <p class="card-text">{{ soundkit.description|truncatechars:100 }}</p>
-                    <!-- Displaying price of the sound kit -->
-                    <p class="card-text">Price: £{{ soundkit.price }}</p>
-                    <!-- Links to more information and purchase options for the sound kit -->
-                    <a href="{% url 'soundkit_detail' soundkit.pk %}" class="btn btn-primary">More Info</a>
-                    <a href="#" class="btn btn-success">Buy Now</a>
+<!-- Listing of all available sound kits -->
+<div class="container-fluid bg-dark">
+    <div class="container pt-4">
+        <h2 class="text-center text-light mb-4">Available Sound Kits</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for soundkit in soundkits %}
+            <div class="col mb-4">
+                <!-- Each card with a shadow -->
+                <div class="card bg-light text-dark h-100">
+                    <!-- Rounded images -->
+                    <img src="{{ soundkit.image.url }}" class="card-img-top rounded" alt="Cover image of {{ soundkit.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ soundkit.name }}</h5>
+                        <!-- Truncated sound kit description-->
+                        <p class="card-text">{{ soundkit.description|truncatechars:80 }}</p>
+                        <div class="mt-auto">
+                            <!-- Displaying price with a label -->
+                            <p class="card-text"><strong>Price:</strong> £{{ soundkit.price }}</p>
+                            <!-- Outlined buttons -->
+                            <a href="{% url 'soundkit_detail' soundkit.pk %}" class="btn btn-outline-primary">More Info</a>
+                            <a href="#" class="btn btn-outline-success">Buy Now</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            {% empty %}
+            <!-- Display message when no sound kits are available -->
+            <div class="col">
+                <p class="text-center text-light">No sound kits available.</p>
+            </div>
+            {% endfor %}
         </div>
-        {% empty %}
-        <!-- Display message when no sound kits are available -->
-        <p>No sound kits available.</p>
-        {% endfor %}
     </div>
 </div>
 {% endblock %}
