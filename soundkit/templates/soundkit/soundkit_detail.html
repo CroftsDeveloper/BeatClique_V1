@@ -3,6 +3,7 @@
 
 {% block title %}{{ soundkit.name }}{% endblock %}
 
+
 {% block content %}
 <!-- Detail view for individual sound kits -->
 <div class="container-fluid bg-dark text-light p-4">
@@ -10,23 +11,36 @@
         <!-- Left column for sound kit image -->
         <div class="col-md-4">
             <div class="soundkit-image">
-                <!-- Responsive image display of the sound kit -->
                 <img src="{{ soundkit.image.url }}" alt="Image of {{ soundkit.name }}" class="img-fluid rounded">
             </div>
         </div>
-<!-- Right column for sound kit information -->
-<div class="col-md-8">
-    <div class="soundkit-detail" role="article">
-        <h1>{{ soundkit.name }}</h1>
-        <!-- Price placed above the Add to Cart button -->
-        <p class="price">Price: £{{ soundkit.price }}</p>
-        <p>{{ soundkit.description }}</p>
-        <!-- Interactive button for purchasing the sound kit -->
-        <div class="text-end">
-            <a href="#" class="btn btn-success" role="button">Add to Cart</a>
+        <!-- Right column for sound kit information -->
+        <div class="col-md-8">
+            <div class="card bg-light text-dark h-100">
+                <div class="card-header text-center">
+                    <!-- Kit name -->
+                    <h5 class="card-title">{{ soundkit.name }}</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Display sound kit description -->
+                    <p class="card-text">{{ soundkit.description }}</p>
+                </div>
+                <!-- Price and Add to Cart button at the bottom -->
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    <!-- More Soundkits button -->
+                    <a href="{% url 'soundkit_list' %}" class="btn btn-primary">More Soundkits</a>
+                    <!-- Price with gold color -->
+                    <span id="price-badge" class="badge bg-black text-white rounded-pill" style="font-size: 20px; padding: 10px;">
+                        £{{ soundkit.price|floatformat:"0" }}
+                    </span>
+                    <!-- Add to cart button -->
+                    <div>
+                        <a href="#" class="btn btn-success" role="button">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+
 
 
 <!-- FAQs Section -->

@@ -81,4 +81,22 @@ document.addEventListener("DOMContentLoaded", function() {
             this.style.transform = 'scale(1) rotate(0deg)';
         });
     });
+
+   // Select the price tag element by its ID
+   const priceTag = document.getElementById('price-badge');
+
+   if (priceTag) {
+       // Start the pulsating animation
+       pulsate(priceTag);
+   }
 });
+
+// Function to apply pulsating animation to an element
+function pulsate(element) {
+   let scale = 1;
+   const interval = setInterval(function() {
+       scale = scale === 1 ? 1.1 : 1;
+       element.style.transform = `scale(${scale})`;
+   }, 200);
+   element.dataset.interval = interval; // Store interval ID in a custom attribute
+}
