@@ -55,7 +55,10 @@ LOGIN_REDIRECT_URL = 'home'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'beatclique_project' / 'templates'],
+        'DIRS': [
+            BASE_DIR / 'beatclique_project' / 'templates',
+            BASE_DIR / 'accounts' / 'templates' / 'accounts',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +70,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media' 
