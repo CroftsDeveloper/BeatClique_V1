@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Account - BeatClique{% endblock %}
+
+{% block content %}
+<section class="bg-dark d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container">
+        <div class="card bg-white">
+            <div class="card-body">
+                <h2 class="text-center mb-4">My Account</h2>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h4>Username:</h4>
+                        <p>{{ request.user.username }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Email:</h4>
+                        <p>{{ request.user.email }}</p>
+                    </div>
+                </div>
+                <!-- Will add sections for additional account information here -->
+                <hr>
+                <h3 class="text-center mb-3">Purchase History</h3>
+                <!-- Will add purchase history here -->
+                <div class="alert alert-info text-center">
+                    Purchase history will be displayed here once implemented.
+                </div>
+                <!-- Logout button -->
+                <div class="text-center">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

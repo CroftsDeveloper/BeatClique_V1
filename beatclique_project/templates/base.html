@@ -26,44 +26,44 @@
 </head>
 <body>
 
-    <div class="container-custom">
-        <header>
-            <!-- Navigation bar setup for dynamic site-wide navigation based on user role -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main navigation">
-                <div class="container-fluid">
-                    <!-- Branding link dynamically directs based on user role -->
-                    <a class="navbar-brand" href="{% if request.user.is_superuser %}{% url 'vendor_dashboard' %}{% else %}{% url 'home' %}{% endif %}">
-                        <div class="logo-container" id="logo-container">
-                            <img src="{% static 'images/homepage/logo.png' %}" alt="BeatClique Logo" height="70" class="navbar-logo" id="logo">
-                        </div>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            {% if request.user.is_superuser %}
-                                {% if request.resolver_match.url_name != 'vendor_dashboard' %}
-                                    <!-- Dashboard link for vendors, positioned first when not on the dashboard -->
-                                    <li class="nav-item">
-                                        <a class="nav-link font-weight-bold" href="{% url 'vendor_dashboard' %}">{% trans "Dashboard" %}</a>
-                                    </li>
-                                {% endif %}
-                                <!-- Sound Kits link for vendors, follows Dashboard when applicable -->
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold sound-kits-link {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %} fs-5" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
-                                </li>
-                            {% else %}
-                                <!-- Non-vendor users see Sound Kits link without Dashboard option -->
-                                <li class="nav-item">
-                                    <a class="nav-link font-weight-bold sound-kits-link {% if request.resolver_match.url_name == 'soundkit_list' %}active{% endif %} fs-5" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
-                                </li>
-                            {% endif %}
-                        </ul>
+<div class="container-custom">
+    <header>
+        <!-- Navigation bar setup for dynamic site-wide navigation based on user role -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <!-- Branding link dynamically directs based on user role -->
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <div class="logo-container" id="logo-container">
+                        <img src="{% static 'images/homepage/logo.png' %}" alt="BeatClique Logo" height="70" class="navbar-logo" id="logo">
                     </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'account' %}">Account</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
     <!-- Main content area for dynamic page-specific content -->
     {% block content %}
     {% endblock content %}
@@ -75,11 +75,7 @@
         <div class="social-links text-center mt-3">
             <a href="https://github.com/CroftsDeveloper"><i class="fab fa-github text-primary fs-4"></i></a>
         </div>
-    </footer> 
-
-
-
-
+    </footer>
 </div>
 
 <!-- Bootstrap JavaScript for responsive and interactive components -->

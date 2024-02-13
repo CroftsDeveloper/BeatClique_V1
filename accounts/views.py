@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
@@ -27,3 +28,7 @@ def user_login(request):
         else:
             return render(request, 'accounts/login.html', {'error': 'Invalid credentials'})
     return render(request, 'accounts/login.html')
+
+@login_required
+def account_view(request):
+    return render(request, 'accounts/account.html')
