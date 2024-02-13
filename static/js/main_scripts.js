@@ -101,5 +101,4 @@ function pulsate(element) {
    element.dataset.interval = interval; // Store interval ID in a custom attribute
 }
 
-// JS for register.html
 
