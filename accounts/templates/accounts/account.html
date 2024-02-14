@@ -9,24 +9,31 @@
         <div class="card bg-white">
             <div class="card-body">
                 <h2 class="text-center mb-4"><i class="fa-solid fa-user"></i> Your Account</h2>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <h4>Username:</h4>
-                        <p>{{ request.user.username }}</p>
+                <!-- Displaying user information with the option to update -->
+                <form method="post" action="{% url 'account_update' %}">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h4>Username:</h4>
+                            <p>{{ request.user.username }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Email:</h4>
+                            <!-- Email field allows for updates -->
+                            <input type="email" name="email" class="form-control" value="{{ request.user.email }}">
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <h4>Email:</h4>
-                        <p>{{ request.user.email }}</p>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
-                </div>
-                <!-- Will add sections for additional account information here -->
+                </form>
                 <hr>
                 <h3 class="text-center mb-3">Purchase History</h3>
-                <!-- Will add purchase history here -->
+                <!-- Placeholder for future implementation -->
                 <div class="alert alert-info text-center">
                     Purchase history will be displayed here once implemented.
                 </div>
-                <!-- Logout button -->
+                <!-- Logout -->
                 <div class="text-center">
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}

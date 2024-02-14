@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Update Account - BeatClique{% endblock %}
+
+{% block content %}
+
+<section class="bg-dark d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container">
+        <div class="card bg-white">
+            <div class="card-body">
+                <h2 class="text-center mb-4"><i class="fas fa-user"></i> Update Your Account</h2>
+                <!-- Display form for updating account details -->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <!-- Manually rendering the email field -->
+                        <input type="email" name="email" id="email" class="form-control" value="{{ form.email.value|default_if_none:'' }}" aria-describedby="emailHelp">
+                        {% if form.email.errors %}
+                            <div id="emailHelp" class="form-text text-danger">
+                                {{ form.email.errors.as_text }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
