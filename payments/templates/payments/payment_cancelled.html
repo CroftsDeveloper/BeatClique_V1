@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment Cancelled - BeatClique{% endblock %}
+
+{% block content %}
+<!-- Black Background Section -->
+<section class="bg-dark d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container">
+        <div class="card bg-white d-flex align-items-center justify-content-center" style="min-height: 200px;">
+            <div class="card-body text-center">
+                <h2 class="mb-4">Payment Cancelled</h2>
+                <p>Your payment has been cancelled.</p>
+                <a href="{% url 'home' %}" class="btn btn-primary mt-3">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

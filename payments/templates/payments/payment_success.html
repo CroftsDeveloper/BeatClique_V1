@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment Successful - BeatClique{% endblock %}
+
+{% block content %}
+<!-- Black Background Section -->
+<section class="bg-dark d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container">
+        <div class="card bg-white d-flex align-items-center justify-content-center" style="min-height: 200px;">
+            <div class="card-body text-center">
+                <h2 class="mb-4">Payment Successful</h2>
+                <p>Your payment has been successfully processed.</p>
+                <!-- Button to "Return to SoundKits" -->
+                <a href="{% url 'soundkit_list' %}" class="btn btn-primary mt-3 mr-2">Return to SoundKits</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

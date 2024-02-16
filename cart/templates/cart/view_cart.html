@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Your Cart</h2>
+    <form action="{% url 'cart:update_cart' %}" method="post">
+        {% csrf_token %}
+        {% if items %}
+            <ul>
+                {% for item in items %}
+                    <li>
+                        {{ item.soundkit.name }} - 
+                        <input type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1">
+                        <button type="submit" name="update" value="{{ item.id }}">Update</button>
+                        <button type="submit" name="remove" value="{{ item.id }}">Remove</button>
+                    </li>
+                {% endfor %}
+            </ul>
+            <!-- Checkout Button -->
+            <a href="{% url 'payments:create_checkout_session' %}" class="btn btn-primary mt-3">Checkout</a>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

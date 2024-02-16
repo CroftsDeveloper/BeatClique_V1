@@ -3,7 +3,6 @@
 
 {% block title %}{{ soundkit.name }}{% endblock %}
 
-
 {% block content %}
 <!-- Detail view for individual sound kits -->
 <div class="container-fluid bg-dark text-light p-4">
@@ -35,13 +34,13 @@
                     </span>
                     <!-- Add to cart button -->
                     <div>
-                        <a href="#" class="btn btn-success" role="button">Add to Cart</a>
+                        <a href="{% url 'cart:add_to_cart' soundkit.id %}" class="btn btn-success" role="button">Add to Cart</a>
                     </div>
                 </div>
             </div>
         </div>
-
-
+    </div>
+</div>
 
 <!-- FAQs Section -->
 <section class="faq-section py-4 bg-dark">

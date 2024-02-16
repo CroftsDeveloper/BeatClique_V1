@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'soundkit',
     'accounts',
     'vendor',
+    'payments',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +77,7 @@ TEMPLATES = [
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media' 
+MEDIA_ROOT = BASE_DIR / 'media'
 
 WSGI_APPLICATION = 'beatclique_project.wsgi.application'
 
@@ -130,4 +132,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.CustomUser' 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Stripe configuration
+STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')

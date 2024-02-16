@@ -27,8 +27,11 @@ urlpatterns = [
     path('soundkits/', include('soundkit.urls')),
     path('accounts/', include('accounts.urls')),
     path('vendor/', include('vendor.urls')),
+    path('payments/', include(('payments.urls', 'payments'), namespace='payments')),
+    path('cart/', include(('cart.urls', 'cart'), namespace='cart')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
