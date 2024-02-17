@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order History - BeatClique{% endblock %}
+
+{% block content %}
+<!-- Flex Container for entire content section -->
+<div class="d-flex flex-column bg-dark" style="min-height: 100vh;">
+    <!-- Heading Section-->
+    <div class="py-4">
+        <div class="container text-center text-white">
+            <h2 class="mb-0">Order History</h2>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="flex-grow-1 pb-5">
+        <div class="container">
+            {% if orders %}
+                {% for order in orders %}
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <h5 class="mb-0">Order ID: {{ order.id }}</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5 class="mb-0">Date: {{ order.created_at|date:"M d, Y H:i" }}</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5 class="mb-0">Total: £{{ order.total }}</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5 class="mb-0">Status: {% if order.paid %}<span class="badge bg-success">Paid</span>{% else %}<span class="badge bg-warning text-dark">Pending</span>{% endif %}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body bg-light">
+                            <h6 class="card-title">Items Purchased:</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Item</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in order.orderitem_set.all %}
+                                            <tr>
+                                                <td>{{ item.soundkit.name }}</td>
+                                                <td>{{ item.quantity }}</td>
+                                                <td>£{{ item.soundkit.price }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center text-white">
+                    <p>No orders found.</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

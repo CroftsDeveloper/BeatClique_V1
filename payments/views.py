@@ -2,7 +2,9 @@ from django.shortcuts import redirect, render
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 import stripe
-from cart.models import Cart
+from cart.models import Cart, CartItem
+from .models import Order, OrderItem
+from soundkit.models import SoundKit
 
 # Set Stripe's API key
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -48,12 +50,32 @@ def create_checkout_session(request):
 
 @login_required
 def payment_success(request):
-    # Clear user's cart after successful payment
-    Cart.objects.filter(user=request.user).delete()
-    # Render the payment success template
-    return render(request, 'payments/payment_success.html')
+    try:
+        user_cart = Cart.objects.get(user=request.user)
+        # Calculate total cost for the order
+        total_cost = sum([item.soundkit.price * item.quantity for item in user_cart.items.all()])
+        # Create an order
+        order = Order.objects.create(user=request.user, total=total_cost, paid=True)
+        for item in user_cart.items.all():
+            OrderItem.objects.create(order=order, soundkit=item.soundkit, quantity=item.quantity)
+        # Clear user's cart after successful payment
+        user_cart.delete()
+        # Render the payment success template
+        return render(request, 'payments/payment_success.html')
+    except Cart.DoesNotExist:
+        return render(request, 'payments/error.html', {'message': 'No cart found for user.'})
 
 @login_required
 def payment_cancelled(request):
     # Render the payment cancelled template
     return render(request, 'payments/payment_cancelled.html')
+
+@login_required
+def order_history(request):
+    try:
+        # Retrieve payment-related order history for the current user
+        orders = Order.objects.filter(user=request.user)
+        return render(request, 'payments/order_history.html', {'orders': orders})
+    except Order.DoesNotExist:
+        # Handle case where no orders are found for the user
+        return render(request, 'payments/order_history.html', {'orders': []})

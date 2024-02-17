@@ -29,12 +29,12 @@
                 </form>
                 <hr>
                 <h3 class="text-center mb-3">Purchase History</h3>
-                <!-- Placeholder for future implementation -->
-                <div class="alert alert-info text-center">
-                    Purchase history will be displayed here once implemented.
+                <!-- Button to navigate to order history -->
+                <div class="text-center">
+                    <a href="{% url 'payments:order_history' %}" class="btn btn-info">View Order History</a>
                 </div>
                 <!-- Logout -->
-                <div class="text-center">
+                <div class="text-center mt-3">
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Logout</button>

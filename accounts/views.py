@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import CustomUserCreationForm, AccountUpdateForm
+from payments.models import Order
 
 # View for registering new users
 def register(request):
@@ -57,9 +58,16 @@ def account_update(request):
         form = AccountUpdateForm(instance=request.user)
     return render(request, 'accounts/account_update.html', {'form': form})
 
-# View for user logout
+# View for logging out users
 @login_required
 def logout_view(request):
     logout(request)
-    messages.success(request, 'You have been logged out.')  # Notify user of successful logout
+    messages.success(request, 'You have been logged out.') # Notify user of successful logout
     return redirect('home')
+
+
+# View for displaying order history
+@login_required
+def order_history(request):
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'accounts/order_history.html', {'orders': orders})
