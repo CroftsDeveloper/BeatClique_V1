@@ -31,6 +31,8 @@ def view_cart(request):
     except Cart.DoesNotExist:
         cart = None
         items = []
+        # Display an error message for empty cart
+        messages.error(request, "Your cart is empty.")
     return render(request, 'cart/view_cart.html', {'cart': cart, 'items': items})
 
 @login_required
@@ -40,7 +42,12 @@ def update_cart(request):
         for key, value in request.POST.items():
             if key.startswith('quantity_'):
                 item_id = key.split('_')[1]
-                cart_item = CartItem.objects.get(id=item_id, cart=cart)
+                try:
+                    cart_item = CartItem.objects.get(id=item_id, cart=cart)
+                except CartItem.DoesNotExist:
+                    # Handle case where the requested item does not exist in the cart
+                    messages.error(request, "Item not found in your cart.")
+                    return redirect('cart:view_cart')
                 if 'update' in request.POST and request.POST['update'] == item_id:
                     cart_item.quantity = int(value)
                     cart_item.save()

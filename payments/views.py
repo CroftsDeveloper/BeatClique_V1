@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 import stripe
-from cart.models import Cart, CartItem
+from cart.models import Cart
 
 # Set Stripe's API key
 stripe.api_key = settings.STRIPE_SECRET_KEY
