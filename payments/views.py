@@ -5,6 +5,7 @@ import stripe
 from cart.models import Cart, CartItem
 from .models import Order, OrderItem
 from soundkit.models import SoundKit
+from django.core.mail import send_mail
 
 # Set Stripe's API key
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -60,6 +61,21 @@ def payment_success(request):
             OrderItem.objects.create(order=order, soundkit=item.soundkit, quantity=item.quantity)
         # Clear user's cart after successful payment
         user_cart.delete()
+
+        # Email content
+        subject = 'Your BeatClique Purchase Confirmation'
+        message = f'Hi {request.user.username},\n\n' \
+                  f'Thank you for your purchase! Your order has been processed successfully.\n' \
+                  f'Order ID: {order.id}\n' \
+                  f'Total amount paid: £{total_cost}\n\n' \
+                  f'You can view your order history on your account page.\n\n' \
+                  f'Best,\nBeatClique Team'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [request.user.email, ]
+
+        # Send email
+        send_mail(subject, message, email_from, recipient_list)
+
         # Render the payment success template
         return render(request, 'payments/payment_success.html')
     except Cart.DoesNotExist:
