@@ -44,6 +44,7 @@
                                             <th scope="col">Item</th>
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Price</th>
+                                            <th scope="col">Download</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,6 +53,12 @@
                                                 <td>{{ item.soundkit.name }}</td>
                                                 <td>{{ item.quantity }}</td>
                                                 <td>£{{ item.soundkit.price }}</td>
+                                                <td>
+                                                    {% if order.paid %}
+                                                        <!-- Link to download purchased product -->
+                                                        <a href="{% url 'payments:download_product_file' item.id %}" class="btn btn-primary">Download</a>
+                                                    {% endif %}
+                                                </td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>

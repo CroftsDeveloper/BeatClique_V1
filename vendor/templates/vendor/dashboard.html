@@ -20,7 +20,7 @@
             {% endif %}
                     <!-- Card for displaying individual sound kit details -->
                     <div class="card mx-2" style="min-width: 18rem; max-width: 18rem;">
-                        <img src="{{ soundkit.image.url }}" class="card-img-top" alt="{{ soundkit.name }}">
+                        <img src="{{ soundkit.image.url }}" class="card-img-top" alt="{{ soundkit.name }}" data-cloudinary-resource-type="image" data-cloudinary-cloud-name="{{ cloud_name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ soundkit.name }}</h5>
                             <p class="card-text">£{{ soundkit.price }}</p>

@@ -4,18 +4,20 @@ from django.http import HttpResponseForbidden
 from django.contrib import messages 
 from .forms import SoundKitForm
 from soundkit.models import SoundKit
+from django.conf import settings 
 
 @login_required
 def dashboard(request):
-    # TODO: implement a group-based access control for vendor functionalities
+    # Retrieve the Cloudinary cloud name from settings
+    cloud_name = settings.CLOUDINARY['cloud_name']
+    
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     soundkits = SoundKit.objects.all()
-    return render(request, 'vendor/dashboard.html', {'soundkits': soundkits})
+    return render(request, 'vendor/dashboard.html', {'soundkits': soundkits, 'cloud_name': cloud_name})
 
 @login_required
 def add_soundkit(request):
-    # TODO: Review if additional user roles need access to this functionality
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     if request.method == 'POST':
@@ -30,7 +32,6 @@ def add_soundkit(request):
 
 @login_required
 def edit_soundkit(request, pk):
-    # TODO: Ensure that only authorized users can edit sound kits
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     soundkit = get_object_or_404(SoundKit, pk=pk)
@@ -46,7 +47,6 @@ def edit_soundkit(request, pk):
 
 @login_required
 def delete_soundkit(request, pk):
-    # TODO: Add confirmation dialogue before deletion to improve UX
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     soundkit = get_object_or_404(SoundKit, pk=pk)
