@@ -11,21 +11,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 from decouple import config
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('DJANGO_SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,23 +31,20 @@ INSTALLED_APPS = [
     'vendor',
     'payments',
     'cart',
-    'cloudinary',
-    'cloudinary_storage',
+    'storages',  # AWS S3
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',  # Ensure CSRF middleware is before AuthenticationMiddleware
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'beatclique_project.urls'
-
-LOGIN_REDIRECT_URL = 'home'
 
 TEMPLATES = [
     {
@@ -71,85 +60,48 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media', 
+                'django.template.context_processors.media',
             ],
         },
     },
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
 WSGI_APPLICATION = 'beatclique_project.wsgi.application'
 
 # Database configuration
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
-# Password validation configuration
+# Password validation and other settings...
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# Internationalization settings...
 
-# Internationalization configuration
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
-
-# Static files configuration
-
+# Static files settings
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# AWS S3 Storage Configuration
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
 
-# Default primary key field type
+# Static files settings
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Media files settings
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
-
-# Stripe configuration
-STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
+# Stripe Secret Key
 STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-
-# Email configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-
-# Cloudinary configuration
-CLOUDINARY = {
-    'cloud_name': config('CLOUDINARY_CLOUD_NAME'),
-    'api_key': config('CLOUDINARY_API_KEY'),
-    'api_secret': config('CLOUDINARY_API_SECRET')
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

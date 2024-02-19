@@ -27,7 +27,7 @@ urlpatterns = [
     path('soundkits/', include('soundkit.urls')),
     path('accounts/', include('accounts.urls')),
     path('vendor/', include('vendor.urls')),
-    path('payments/', include(('payments.urls', 'payments'), namespace='payments')),
+    path('payments/', include('payments.urls')),
     path('cart/', include(('cart.urls', 'cart'), namespace='cart')),
 ]
 

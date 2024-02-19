@@ -10,6 +10,10 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse, Http404
 from django.core.files.base import ContentFile
 import os
+import boto3
+from botocore.exceptions import NoCredentialsError
+
+
 
 # Set Stripe's API key
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -90,21 +94,27 @@ def order_history(request):
 @login_required
 def download_product_file(request, order_item_id):
     """
-    Securely downloads the product file for the user if they have purchased it.
-    This view verifies the user's purchase before granting access to the file.
+    Redirects the user to the AWS S3 URL to securely download the product file
+    if they have purchased it.
     """
+    # Retrieve the specific order item to ensure the user has purchased it
     order_item = get_object_or_404(OrderItem, id=order_item_id, order__user=request.user)
-    sound_kit = order_item.soundkit
-
-    # Check if the ZIP file exists before attempting to serve it
-    if not sound_kit.zip_file:
+    
+    # Ensure there's a file associated with the sound kit
+    if not order_item.soundkit.zip_file:
         return HttpResponse("No file available for download.", status=404)
+    
+    # Generate the S3 URL
+    s3_client = boto3.client('s3',
+                             aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+                             aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+                             region_name=settings.AWS_S3_REGION_NAME)
 
-    file_path = sound_kit.zip_file.path
-    if not os.path.exists(file_path):
-        raise Http404("The requested file does not exist.")
+    try:
+        file_url = s3_client.generate_presigned_url('get_object',
+                                                    Params={'Bucket': settings.AWS_STORAGE_BUCKET_NAME,
+                                                            'Key': str(order_item.soundkit.zip_file)})
+    except NoCredentialsError:
+        return HttpResponse("Could not generate the download link.", status=500)
 
-    with open(file_path, 'rb') as fh:
-        response = HttpResponse(fh.read(), content_type="application/zip")
-        response['Content-Disposition'] = f'attachment; filename={os.path.basename(file_path)}'
-        return response
+    return redirect(file_url)

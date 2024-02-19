@@ -8,13 +8,13 @@ from django.conf import settings
 
 @login_required
 def dashboard(request):
-    # Retrieve the Cloudinary cloud name from settings
-    cloud_name = settings.CLOUDINARY['cloud_name']
+    # Retrieve the AWS S3 bucket name from settings
+    bucket_name = settings.AWS_STORAGE_BUCKET_NAME
     
     if not request.user.is_superuser:
         return HttpResponseForbidden("You are not authorized to view this page.")
     soundkits = SoundKit.objects.all()
-    return render(request, 'vendor/dashboard.html', {'soundkits': soundkits, 'cloud_name': cloud_name})
+    return render(request, 'vendor/dashboard.html', {'soundkits': soundkits, 'bucket_name': bucket_name})
 
 @login_required
 def add_soundkit(request):
