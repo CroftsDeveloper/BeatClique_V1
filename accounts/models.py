@@ -3,6 +3,7 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     bio = models.TextField(blank=True)
+    email_verified = models.BooleanField(default=False)
 
     groups = models.ManyToManyField(
         'auth.Group',

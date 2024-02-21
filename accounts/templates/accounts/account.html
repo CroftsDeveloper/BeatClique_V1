@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h2 class="text-center mb-4"><i class="fa-solid fa-user"></i> Your Account</h2>
                 <!-- Displaying user information with the option to update -->
-                <form method="post" action="{% url 'account_update' %}">
+                <form method="post" action="{% url 'accounts:account_update' %}">
                     {% csrf_token %}
                     <div class="row mb-3">
                         <div class="col-md-6">
@@ -35,7 +35,7 @@
                 </div>
                 <!-- Logout -->
                 <div class="text-center mt-3">
-                    <form action="{% url 'logout' %}" method="post">
+                    <form action="{% url 'accounts:logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Logout</button>
                     </form>

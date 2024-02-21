@@ -36,12 +36,16 @@
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Login</button>
                                 </div>
-                                {% if error %}
-                                    <div class="alert alert-danger text-center">{{ error }}</div>
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
                                 {% endif %}
                             </form>
                             <!-- Navigation link to registration page for users without an account -->
-                            <p class="mt-3 text-center">Don't have an account? <a href="{% url 'register' %}" class="btn btn-link">Register here</a></p>
+                            <p class="mt-3 text-center">Don't have an account? <a href="{% url 'accounts:register' %}" class="btn btn-link">Register here</a></p>
                         </div>
                     </div>
                 </div>

@@ -65,13 +65,17 @@
                                     <div class="col-md-6"></div> <!-- Empty column for spacing -->
                                     <div class="col-md-6">
                                         <div class="alert alert-danger" role="alert">
-                                            Please correct the errors below.
+                                            {% for field, errors in form.errors.items %}
+                                                {% for error in errors %}
+                                                    {{ field|capfirst }}: {{ error }}
+                                                {% endfor %}
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                                 {% endif %}
                             </form>
-                            <p class="mt-3 text-center">Already have an account? <a href="{% url 'login' %}" class="btn btn-link">Login here</a></p>
+                            <p class="mt-3 text-center">Already have an account? <a href="{% url 'accounts:login' %}" class="btn btn-link">Login here</a></p>
                         </div>
                     </div>
                 </div>

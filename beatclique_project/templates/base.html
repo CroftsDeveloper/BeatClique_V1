@@ -50,7 +50,7 @@
                 {% if user.is_authenticated %}
                     <!-- Account Icon -->
                     <li class="nav-item">
-                        <a id="user-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'account' %}">
+                        <a id="user-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:account' %}">
                             <i class="fa-solid fa-user fs-3"></i> <!-- Font Awesome user icon -->
                         </a>
                     </li>
@@ -60,13 +60,13 @@
                             <i class="fa-solid fa-cart-shopping fs-3"></i> <!-- Font Awesome cart icon -->
                         </a>
                     </li>
-                {% else %}
+                    {% else %}
                     <!-- Show login and register link for non-authenticated users -->
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:login' %}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'register' %}">Register</a>
+                        <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:register' %}">Register</a>
                     </li>
                 {% endif %}
             </ul>

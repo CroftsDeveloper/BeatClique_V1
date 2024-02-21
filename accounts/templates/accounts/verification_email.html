@@ -1,0 +1,11 @@
+
+{% block content %}
+
+<h1>Email Verification Required</h1>
+
+<p>Dear {{ user.first_name }},</p>
+<p>Thank you for registering with BeatClique! To complete your registration and verify your email address, please click the link below:</p>
+<p><a href="{{ verification_url }}">Verify Email Address</a></p>
+<p>If you did not sign up for a BeatClique account, please ignore this email.</p>
+
+{% endblock %}
