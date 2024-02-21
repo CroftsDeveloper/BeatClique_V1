@@ -3,41 +3,51 @@
 {% load static %}
 
 {% block vendor_content %}
-<!-- Main container for the Vendor Dashboard page -->
-<div class="container mt-4">
-    <h1>{% trans "Vendor Dashboard" %}</h1>
-    
-    <!-- Carousel to showcase sound kits -->
-    <div id="soundKitCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 75%; margin: auto;">
+<!-- Main container for the Vendor Dashboard page with Bootstrap's dark theme background -->
+<div class="container-fluid bg-dark text-white vh-100 d-flex flex-column">
+    <div class="container">
+        <h1 class="text-center">
+            <i class="fas fa-chart-line"></i> {% trans "Vendor Dashboard" %}
+        </h1>
         
-        <!-- Carousel's dynamic content area -->
-        <div class="carousel-inner">
-            {% for soundkit in soundkits %}
-            <!-- Ensures each sound kit is wrapped in a carousel item for proper display -->
-            {% if forloop.counter0|divisibleby:4 %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <div class="d-flex justify-content-start">
-            {% endif %}
-                    <!-- Card for displaying individual sound kit details -->
-                    <div class="card mx-2" style="min-width: 18rem; max-width: 18rem;">
-                        <img src="{{ soundkit.image.url }}" class="card-img-top" alt="{{ soundkit.name }}" data-cloudinary-resource-type="image" data-cloudinary-cloud-name="{{ cloud_name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ soundkit.name }}</h5>
-                            <p class="card-text">£{{ soundkit.price }}</p>
-                            <!-- Edit and Delete buttons for sound kit management -->
-                            <a href="{% url 'edit_soundkit' soundkit.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
-                            <a href="{% url 'delete_soundkit' soundkit.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+        <!-- Carousel to showcase sound kits -->
+        <div id="soundKitCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 75%; margin: auto;">
+            <!-- Carousel's dynamic content area -->
+            <div class="carousel-inner">
+                {% for soundkit in soundkits %}
+                <!-- Ensures each sound kit is wrapped in a carousel item for proper display -->
+                {% if forloop.counter0|divisibleby:4 %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="d-flex justify-content-center">
+                {% endif %}
+                        <!-- Card for displaying individual sound kit details -->
+                        <div class="card mx-2" style="min-width: 18rem; max-width: 18rem;">
+                            <img src="{{ soundkit.image.url }}" class="card-img-top" alt="{{ soundkit.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ soundkit.name }}</h5>
+                                <p class="card-text">£{{ soundkit.price }}</p>
+                                <!-- Edit and Delete buttons for sound kit management -->
+                                <a href="{% url 'edit_soundkit' soundkit.id %}" class="btn btn-outline-primary btn-sm">Edit</a>
+                                <a href="{% url 'delete_soundkit' soundkit.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                            </div>
                         </div>
+                {% if forloop.counter|divisibleby:4 or forloop.last %}
                     </div>
-            {% if forloop.counter|divisibleby:4 or forloop.last %}
                 </div>
+                {% endif %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
+        </div>
+        
+        <!-- "Add Soundkit" button positioned below the carousel, spaced from the footer -->
+        <div class="text-center mt-4 mb-5">
+            <a href="{% url 'add_soundkit' %}" class="btn btn-success">{% trans "Add Soundkit" %}</a>
         </div>
     </div>
-    
-    <!-- "Add Soundkit" button positioned below the carousel -->
-    <a href="{% url 'add_soundkit' %}" class="btn btn-primary mt-3">{% trans "Add Soundkit" %}</a>
+    <footer class="mt-auto py-3 bg-dark">
+        <div class="container text-center text-white">
+            <!-- Footer content goes here -->
+        </div>
+    </footer>
 </div>
 {% endblock %}

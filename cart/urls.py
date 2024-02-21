@@ -10,6 +10,4 @@ urlpatterns = [
     
     # URL pattern to update the cart contents
     path('update/', views.update_cart, name='update_cart'),
-
-
 ]

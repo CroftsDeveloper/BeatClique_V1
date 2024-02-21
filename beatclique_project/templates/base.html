@@ -29,50 +29,52 @@
 <div class="container-custom">
     <header>
         <!-- Navigation bar setup for dynamic site-wide navigation based on user role -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main navigation">
-    <div class="container-fluid">
-        <!-- Branding link dynamically directs based on user role -->
-        <a class="navbar-brand" href="{% url 'home' %}">
-            <div class="logo-container" id="logo-container">
-                <img src="{% static 'images/homepage/logo.PNG' %}" alt="BeatClique Logo" height="70" class="navbar-logo" id="logo">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main navigation">
+            <div class="container-fluid">
+                <!-- Branding link dynamically directs based on user role -->
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <div class="logo-container" id="logo-container">
+                        <img src="{% static 'images/homepage/logo.PNG' %}" alt="BeatClique Logo" height="70" class="navbar-logo" id="logo">
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                            <!-- Account Icon -->
+                            <li class="nav-item">
+                                <a id="user-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:account' %}">
+                                    <i class="fa-solid fa-user fs-3"></i> <!-- Font Awesome user icon -->
+                                </a>
+                            </li>
+                            {% if not user.is_superuser %}
+                                <!-- Cart Icon, hidden for superusers -->
+                                <li class="nav-item">
+                                    <a id="cart-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'cart:view_cart' %}">
+                                        <i class="fa-solid fa-cart-shopping fs-3"></i> <!-- Font Awesome cart icon -->
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            <!-- Show login and register link for non-authenticated users -->
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:register' %}">Register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                    <!-- Account Icon -->
-                    <li class="nav-item">
-                        <a id="user-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:account' %}">
-                            <i class="fa-solid fa-user fs-3"></i> <!-- Font Awesome user icon -->
-                        </a>
-                    </li>
-                    <!-- Cart Icon -->
-                    <li class="nav-item">
-                        <a id="cart-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'cart:view_cart' %}">
-                            <i class="fa-solid fa-cart-shopping fs-3"></i> <!-- Font Awesome cart icon -->
-                        </a>
-                    </li>
-                    {% else %}
-                    <!-- Show login and register link for non-authenticated users -->
-                    <li class="nav-item">
-                        <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:login' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:register' %}">Register</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</nav>
+        </nav>
     </header>
     <!-- Main content area for dynamic page-specific content -->
     {% block content %}

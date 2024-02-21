@@ -2,14 +2,11 @@
 {% load i18n %}
 {% load static %}
 
-
 {% block content %}
-<!-- Main content container for vendor-specific functions -->
-<div class="container mt-4">
-    {% block vendor_content %}
-    <!-- Section reserved for content specific to vendor pages -->
-    {% endblock vendor_content %}
-</div>
+<!-- Main content for vendor-specific functions without an outer container, directly using Bootstrap classes for dark background and text color -->
+{% block vendor_content %}
+<!-- Section reserved for content specific to vendor pages -->
+{% endblock vendor_content %}
 
 <!-- JavaScript for vendor functionalities -->
 <script src="{% static 'vendor/vendor_scripts.js' %}"></script>
