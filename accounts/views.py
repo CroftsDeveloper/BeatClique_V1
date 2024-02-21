@@ -31,12 +31,17 @@ def user_login(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            if not user.email_verified:
+            if user.is_superuser:  # Check if the user is a superuser
+                login(request, user)
+                messages.success(request, 'Login successful.')
+                return redirect('home')
+            elif not user.email_verified:
                 messages.error(request, 'Please verify your email address to login.')
                 return redirect('accounts:login')
-            login(request, user)
-            messages.success(request, 'Login successful.')
-            return redirect('home')
+            else:
+                login(request, user)
+                messages.success(request, 'Login successful.')
+                return redirect('home')
         else:
             messages.error(request, 'Invalid username or password.')
     return render(request, 'accounts/login.html')
