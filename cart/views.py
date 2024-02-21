@@ -26,15 +26,24 @@ def add_to_cart(request, soundkit_id):
 
 @login_required
 def view_cart(request):
+    total_price = 0  # Initialize total price
     try:
         cart = Cart.objects.get(user=request.user)
         items = cart.items.all()
+        total_price = sum(item.quantity * item.soundkit.price for item in items)  # Calculate total price
     except Cart.DoesNotExist:
         cart = None
         items = []
         # Display an error message for empty cart
         messages.error(request, "Your cart is empty.")
-    return render(request, 'cart/view_cart.html', {'cart': cart, 'items': items})
+    
+    # Pass the total price along with other context data to the template
+    context = {
+        'cart': cart,
+        'items': items,
+        'total_price': total_price,
+    }
+    return render(request, 'cart/view_cart.html', context)
 
 @login_required
 def update_cart(request):

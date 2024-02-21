@@ -4,25 +4,32 @@
 {% block title %}Your Cart - BeatClique{% endblock title %}
 
 {% block content %}
-<div class="container mt-4"> <!-- Adjusted margin top -->
+<div class="container mt-4">
+    <!-- Cart Heading -->
     <h2 class="my-4 text-center">Your Cart <i class="fas fa-shopping-cart ms-2"></i></h2>
     <form action="{% url 'cart:update_cart' %}" method="post">
         {% csrf_token %}
         {% if items %}
+            <!-- Items List -->
             <div class="list-group mb-4">
                 {% for item in items %}
-                    <!-- Cart item display using Bootstrap grid for responsive layout -->
+                    <!-- Item Display -->
                     <div class="list-group-item">
                         <div class="row align-items-center">
-                            <div class="col-md-6">
+                            <!-- Item Name -->
+                            <div class="col-md-4">
                                 <span>{{ item.soundkit.name }}</span>
                             </div>
-                            <div class="col-md-3">
-                                <!-- Quantity input field -->
-                                <input type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1" class="form-control form-control-sm" aria-label="Quantity">
+                            <!-- Item Price -->
+                            <div class="col-md-2">
+                                £{{ item.soundkit.price|floatformat:2 }}
                             </div>
-                            <div class="col-md-3">
-                                <!-- Update and Remove buttons with Bootstrap styling and spacing -->
+                            <!-- Quantity Input -->
+                            <div class="col-md-2">
+                                <input type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1" class="form-control form-control-sm" aria-label="Quantity for {{ item.soundkit.name }}">
+                            </div>
+                            <!-- Update/Remove Buttons -->
+                            <div class="col-md-4">
                                 <div class="btn-group" role="group" aria-label="Cart actions">
                                     <button type="submit" name="update" value="{{ item.id }}" class="btn btn-primary btn-md me-2">Update</button>
                                     <button type="submit" name="remove" value="{{ item.id }}" class="btn btn-danger btn-md">Remove</button>
@@ -32,12 +39,16 @@
                     </div>
                 {% endfor %}
             </div>
-            <!-- Checkout button with consistent size -->
+            <!-- Total Price -->
+            <div class="text-center mb-3">
+                <strong>Total: £{{ total_price|floatformat:2 }}</strong>
+            </div>
+            <!-- Checkout Button -->
             <div class="text-center">
                 <a href="{% url 'payments:create_checkout_session' %}" class="btn btn-success btn-md mb-3">Checkout</a>
             </div>
         {% else %}
-            <!-- Display message if cart is empty and provide link to products -->
+            <!-- Empty Cart Message -->
             <p class="mt-4 text-center">Your cart is empty.</p>
             <div class="text-center">
                 <a href="{% url 'soundkit_list' %}" class="btn btn-primary btn-lg mb-3">Return to SoundKits</a>

@@ -113,3 +113,28 @@ function rotateCounterclockwise() {
     orderHistoryIcon.style.transition = 'transform 1s linear';
     orderHistoryIcon.style.transform = 'rotate(-10deg)';
 }
+
+// Validate cart item quantities before form submission
+function validateCartQuantities() {
+    const quantityInputs = document.querySelectorAll('input[type="number"][name^="quantity_"]');
+    for (let input of quantityInputs) {
+        if (parseInt(input.value, 10) < 1) {
+            alert('Quantity must be at least 1 for all items.');
+            return false;
+        }
+    }
+    return true;
+}
+
+// Add confirmation dialog for removing items from the cart
+document.addEventListener('DOMContentLoaded', function() {
+    const removeButtons = document.querySelectorAll('button[name="remove"]');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            const itemName = this.closest('.list-group-item').querySelector('span').textContent;
+            if (!confirm(`Are you sure you want to remove ${itemName} from your cart?`)) {
+                event.preventDefault();
+            }
+        });
+    });
+});
