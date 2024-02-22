@@ -1,1 +1,1 @@
-web: gunicorn beatclique_project.wsgi
+web: gunicorn beatclique-project.wsgi
