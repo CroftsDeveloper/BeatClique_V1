@@ -5,21 +5,44 @@
 
 {% block content %}
 <!-- Container for delete confirmation -->
-<div class="container mt-4">
-    <h1>Delete Sound Kit</h1>
-    <!-- Display messages -->
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
-    <!-- Confirmation message -->
-    <p>Are you sure you want to delete "{{ soundkit.name }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <!-- Buttons for confirm or cancel -->
-        <button type="submit" class="btn btn-danger">Delete</button>
-        <a href="{% url 'vendor_dashboard' %}" class="btn btn-secondary">Cancel</a>
-    </form>
+<div class="container-fluid bg-dark text-white vh-100 d-flex flex-column">
+    <div class="container">
+        <!-- Heading with delete icon -->
+        <h1 class="text-center mb-4">Delete Sound Kit <i class="fas fa-trash-alt"></i></h1>
+        <!-- Delete confirmation card -->
+        <div class="card mx-auto" style="width: 75%;">
+            <div class="card-body bg-white">
+                <!-- Displaying messages -->
+                {% if messages %}
+                    <div class="mt-3">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <!-- Delete confirmation form -->
+                <form method="post">
+                    {% csrf_token %}
+                    <!-- Confirmation message with enhanced styling -->
+                    <p class="font-weight-bold">Confirm deletion of "Resurgence"?</p>
+                    <!-- Confirm or cancel buttons -->
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a href="{% url 'vendor_dashboard' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="mt-auto py-3 bg-dark">
+        <div class="container text-center text-white">
+        </div>
+    </footer>
 </div>
 {% endblock %}
