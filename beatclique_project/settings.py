@@ -95,6 +95,3 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # Heroku settings
 import django_heroku
 django_heroku.settings(locals(), staticfiles=False)
-
-# Manually configure static files storage to use S3
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
