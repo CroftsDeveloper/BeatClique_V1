@@ -11,35 +11,37 @@
             {% trans "Vendor Dashboard" %} <i class="fas fa-chart-line"></i>
         </h1>
         
-        {% if soundkits.exists %}
-            <!-- Carousel to showcase sound kits -->
-            <div id="soundKitCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 75%; margin: auto;">
-                <!-- Dynamic content area for Carousel -->
-                <div class="carousel-inner">
-                    {% for soundkit in soundkits %}
-                        <!-- Carousel item for each sound kit -->
-                        {% if forloop.counter0|divisibleby:4 %}
-                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                <div class="d-flex justify-content-center">
-                        {% endif %}
-                                    <!-- Card for sound kit details -->
-                                    <div class="card mx-2" style="min-width: 18rem; max-width: 18rem;">
-                                        <img src="{{ soundkit.image.url }}" class="card-img-top" alt="{{ soundkit.name }}">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ soundkit.name }}</h5>
-                                            <p class="card-text">£{{ soundkit.price }}</p>
-                                            <!-- Edit and Delete buttons -->
-                                            <a href="{% url 'edit_soundkit' soundkit.id %}" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="{% url 'delete_soundkit' soundkit.id %}" class="btn btn-danger btn-sm">Delete</a>
-                                        </div>
+        <!-- Carousel to showcase sound kits -->
+        <div id="soundKitCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 75%; margin: auto;">
+            <div class="carousel-inner">
+                {% for soundkit in soundkits %}
+                    <!-- Carousel item for each sound kit -->
+                    {% if forloop.counter0|divisibleby:4 %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="d-flex justify-content-center">
+                    {% endif %}
+                                <!-- Card for sound kit details -->
+                                <div class="card mx-2" style="min-width: 18rem; max-width: 18rem;">
+                                    <img src="{{ soundkit.image.url }}" class="card-img-top" alt="{{ soundkit.name }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ soundkit.name }}</h5>
+                                        <p class="card-text">£{{ soundkit.price }}</p>
+                                        <!-- Edit and Delete buttons -->
+                                        <a href="{% url 'edit_soundkit' soundkit.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{% url 'delete_soundkit' soundkit.id %}" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
-                        {% if forloop.counter|divisibleby:4 or forloop.last %}
                                 </div>
+                    {% if forloop.counter|divisibleby:4 or forloop.last %}
                             </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
+        </div>
+        
+        <!-- Check if sound kits exist -->
+        {% if soundkits.exists %}
+        <!-- If sound kits exist -->
         {% else %}
             <!-- Message to upload sound kits if none are available -->
             <div class="alert alert-info text-center" role="alert">
@@ -51,10 +53,53 @@
         <div class="text-center mt-4 mb-5">
             <a href="{% url 'add_soundkit' %}" class="btn btn-success">{% trans "Add Soundkit" %}</a>
         </div>
+        
+        <!-- Section for Recent Orders -->
+        <h2 class="text-center my-4">Recent User Purchases</h2>
+        {% if recent_orders %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>User</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in recent_orders|dictsort:"id" %}
+                                    <tr>
+                                        <td>{{ order.id }}</td>
+                                        <td>{{ order.created_at|date:"M d, Y H:i" }}</td>
+                                        <td>{{ order.user.username }}</td>
+                                        <td>
+                                            {% for item in order.orderitem_set.all %}
+                                                {{ item.soundkit.name }}{% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>£{{ order.total }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <p>No recent purchases found.</p>
+            </div>
+        {% endif %}
+
     </div>
     <!-- Footer -->
     <footer class="mt-auto py-3 bg-dark">
         <div class="container text-center text-white">
+            <!-- Footer content -->
         </div>
     </footer>
 </div>
