@@ -4,56 +4,62 @@
 {% block title %}Your Cart - BeatClique{% endblock title %}
 
 {% block content %}
-<div class="container mt-4">
-    <!-- Cart Heading -->
-    <h2 class="my-4 text-center">Your Cart <i class="fas fa-shopping-cart ms-2"></i></h2>
-    <form action="{% url 'cart:update_cart' %}" method="post">
-        {% csrf_token %}
-        {% if items %}
-            <!-- Items List -->
-            <div class="list-group mb-4">
-                {% for item in items %}
-                    <!-- Item Display -->
-                    <div class="list-group-item">
-                        <div class="row align-items-center">
-                            <!-- Item Name -->
-                            <div class="col-md-4">
-                                <span>{{ item.soundkit.name }}</span>
-                            </div>
-                            <!-- Item Price -->
-                            <div class="col-md-2">
-                                £{{ item.soundkit.price|floatformat:2 }}
-                            </div>
-                            <!-- Quantity Input -->
-                            <div class="col-md-2">
-                                <input type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1" class="form-control form-control-sm" aria-label="Quantity for {{ item.soundkit.name }}">
-                            </div>
-                            <!-- Update/Remove Buttons -->
-                            <div class="col-md-4">
-                                <div class="btn-group" role="group" aria-label="Cart actions">
-                                    <button type="submit" name="update" value="{{ item.id }}" class="btn btn-primary btn-md me-2">Update</button>
-                                    <button type="submit" name="remove" value="{{ item.id }}" class="btn btn-danger btn-md">Remove</button>
+<div class="container-fluid bg-dark text-white d-flex flex-column min-vh-100"> <!-- Container -->
+    <div class="container"> 
+        <div class="card bg-white"> <!-- Card for cart content -->
+            <div class="card-body">
+                <!-- Cart Heading -->
+                <h1 class="mb-4 text-center">Your Cart <i class="fas fa-shopping-cart fs-3"></i></h1>
+                <form action="{% url 'cart:update_cart' %}" method="post">
+                    {% csrf_token %}
+                    {% if items %}
+                        <!-- Items List -->
+                        <div class="list-group mb-4">
+                            {% for item in items %}
+                                <!-- Item Display -->
+                                <div class="list-group-item">
+                                    <div class="row align-items-center">
+                                        <!-- Item Name -->
+                                        <div class="col-md-4">
+                                            <span>{{ item.soundkit.name }}</span>
+                                        </div>
+                                        <!-- Item Price -->
+                                        <div class="col-md-2">
+                                            £{{ item.soundkit.price|floatformat:2 }}
+                                        </div>
+                                        <!-- Quantity Input -->
+                                        <div class="col-md-2">
+                                            <input type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1" class="form-control" aria-label="Quantity for {{ item.soundkit.name }}">
+                                        </div>
+                                        <!-- Update/Remove Buttons -->
+                                        <div class="col-md-4 d-flex flex-column flex-md-row justify-content-md-end align-items-center mt-2 mt-md-0">
+                                            <button type="submit" name="update" value="{{ item.id }}" class="btn btn-primary mb-2 mb-md-0 me-md-2">Update</button>
+                                            <button type="submit" name="remove" value="{{ item.id }}" class="btn btn-danger">Remove</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <!-- Total Price -->
-            <div class="text-center mb-3">
-                <strong>Total: £{{ total_price|floatformat:2 }}</strong>
-            </div>
-            <!-- Checkout Button -->
-            <div class="text-center">
-                <a href="{% url 'payments:create_checkout_session' %}" class="btn btn-success btn-md mb-3">Checkout</a>
-            </div>
-        {% else %}
-            <!-- Empty Cart Message -->
-            <p class="mt-4 text-center">Your cart is empty.</p>
-            <div class="text-center">
-                <a href="{% url 'soundkit_list' %}" class="btn btn-primary btn-lg mb-3">Return to SoundKits</a>
-            </div>
-        {% endif %}
-    </form>
+                        <!-- Total Price -->
+                        <div class="text-center mb-3">
+                            <strong>Total: £{{ total_price|floatformat:2 }}</strong>
+                        </div>
+                        <!-- Checkout and Return to SoundKits Buttons -->
+                        <div class="d-flex justify-content-center mb-3">
+                            <a href="{% url 'soundkit_list' %}" class="btn btn-primary me-2"><i class="fas fa-arrow-circle-left"></i> Return to SoundKits</a>
+                            <a href="{% url 'payments:create_checkout_session' %}" class="btn btn-success ms-2">Checkout <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    {% else %}
+                        <!-- Empty Cart Message -->
+                        <p class="mt-4 text-center">Your cart is empty.</p>
+                        <!-- Return to SoundKits Button -->
+                        <div class="text-center">
+                            <a href="{% url 'soundkit_list' %}" class="btn btn-primary">Return to SoundKits</a>
+                        </div>
+                    {% endif %}
+                </form>
+            </div> <!-- End of card body -->
+        </div> 
+    </div> 
 </div>
 {% endblock %}

@@ -42,9 +42,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
-                        </li>
+                        {% if not user.is_superuser %}
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'soundkit_list' %}">{% trans "Sound Kits" %}</a>
+                            </li>
+                        {% endif %}
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
@@ -54,8 +56,8 @@
                                     <i class="fa-solid fa-user fs-3"></i> <!-- Font Awesome user icon -->
                                 </a>
                             </li>
+                            <!-- Cart Icon, hidden for superusers -->
                             {% if not user.is_superuser %}
-                                <!-- Cart Icon, hidden for superusers -->
                                 <li class="nav-item">
                                     <a id="cart-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'cart:view_cart' %}">
                                         <i class="fa-solid fa-cart-shopping fs-3"></i> <!-- Font Awesome cart icon -->

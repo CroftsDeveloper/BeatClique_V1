@@ -8,38 +8,55 @@
     <div class="container">
         <div class="card bg-white">
             <div class="card-body">
-                <h2 class="text-center mb-4"><i class="fa-solid fa-user"></i> Your Account</h2>
-                <!-- Displaying user information with the option to update -->
-                <form method="post" action="{% url 'accounts:account_update' %}">
-                    {% csrf_token %}
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <h4>Username:</h4>
-                            <p>{{ request.user.username }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h4>Email:</h4>
-                            <!-- Email field allows for updates -->
-                            <input type="email" name="email" class="form-control" value="{{ request.user.email }}">
-                        </div>
+                <!-- Badge for superuser -->
+                {% if request.user.is_superuser %}
+                <div class="text-center mb-3">
+                    <div class="alert alert-warning fs-4" role="alert">
+                        Superuser
                     </div>
-                    <div class="text-center">
+                </div>
+                <!-- Button to take superuser to dashboard -->
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-auto">
+                        <a href="{% url 'home' %}" class="btn btn-primary btn-md">Dashboard</a>
+                    </div>
+                    <div class="col-auto">
+                        <!-- Logout button -->
+                        <form action="{% url 'accounts:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-md">Logout</button>
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Heading for the account -->
+                <h2 class="text-center mb-4">Your Account <i class="fa-solid fa-user ms-2"></i></h2>
+                <!-- Displaying username -->
+                <div class="text-center mb-3">
+                    <h4>Username:</h4>
+                    <p>{{ request.user.username }}</p>
+                </div>
+                <!-- Displaying user information with the option to update email -->
+                <div class="text-center">
+                    <form method="post" action="{% url 'accounts:account_update' %}">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <h4>Email:</h4>
+                                <!-- Email field allows for updates for non-superusers -->
+                                <input type="email" name="email" class="form-control" value="{{ request.user.email }}">
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                <!-- Button to navigate to order history (only visible for non-superusers) -->
                 <hr>
-                <h3 class="text-center mb-3">Purchase History</h3>
-                <!-- Button to navigate to order history -->
+                <h3 class="text-center my-3">Purchase History</h3>
                 <div class="text-center">
                     <a href="{% url 'payments:order_history' %}" class="btn btn-info">View Order History</a>
                 </div>
-                <!-- Logout -->
-                <div class="text-center mt-3">
-                    <form action="{% url 'accounts:logout' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </form>
-                </div>
+                {% endif %}
             </div>
         </div>
     </div>
