@@ -4,8 +4,8 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['*']   # Need to change to Heroku domain later
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -76,6 +76,11 @@ AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
 
+# Adding cache control settings for static files
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',  # 1 day in seconds
+}
+
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
@@ -93,3 +98,7 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 
 # Custom User Model
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Heroku settings   
+import django_heroku
+django_heroku.settings(locals())
