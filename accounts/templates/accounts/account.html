@@ -17,7 +17,7 @@
                 </div>
                 <!-- Button to take superuser to dashboard -->
                 <div class="text-center mb-3">
-                    <a href="{% url 'home' %}" class="btn btn-primary btn-md">Dashboard</a>
+                    <a href="{% url 'home' %}" class="btn btn-primary btn-md" aria-label="Dashboard">Dashboard</a>
                 </div>
                 {% endif %}
                 <!-- Common content for all users -->
@@ -26,7 +26,7 @@
                 <h2 class="text-center mb-4">Your Account <i class="fa-solid fa-user ms-2"></i></h2>
                 <!-- Displaying username -->
                 <div class="text-center mb-3">
-                    <h4>Username:</h4>
+                    <h3>Username:</h3>
                     <p>{{ request.user.username }}</p>
                 </div>
                 <!-- Displaying user information with the option to update email -->
@@ -35,9 +35,8 @@
                         {% csrf_token %}
                         <div class="row mb-3 justify-content-center">
                             <div class="col-md-6">
-                                <h4>Email:</h4>
-                                <!-- Email field allows for updates for non-superusers -->
-                                <input type="email" name="email" class="form-control" value="{{ request.user.email }}">
+                                <label for="email" class="h4">Email:</label>
+                                <input type="email" id="email" name="email" class="form-control" value="{{ request.user.email }}" aria-describedby="emailHelp">
                             </div>
                             <div class="col-md-2 align-self-end">
                                 <button type="submit" class="btn btn-primary btn-block">Update</button>
@@ -49,18 +48,18 @@
                 <hr>
                 <h3 class="text-center my-3">Purchase History</h3>
                 <div class="text-center">
-                    <a href="{% url 'payments:order_history' %}" class="btn btn-info">View Order History</a>
+                    <a href="{% url 'payments:order_history' %}" class="btn btn-info" aria-label="View Order History">View Order History</a>
                 </div>
                 <!-- Go to Soundkits button -->
                 <div class="text-end mt-3">
-                    <a href="{% url 'soundkit_list' %}" class="btn btn-primary"><i class="fas fa-arrow-left me-2"></i> Go to Soundkits</a>
+                    <a href="{% url 'soundkit_list' %}" class="btn btn-primary" aria-label="Go to Soundkits"><i class="fas fa-arrow-left me-2"></i> Go to Soundkits</a>
                 </div>
                 {% endif %}
                 <!-- Logout button -->
                 <div class="text-center mt-3">
                     <form action="{% url 'accounts:logout' %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-md">Logout</button>
+                        <button type="submit" class="btn btn-danger btn-md" aria-label="Logout">Logout</button>
                     </form>
                 </div>
             </div>
