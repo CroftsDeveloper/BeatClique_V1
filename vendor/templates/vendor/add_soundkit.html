@@ -25,6 +25,10 @@
                         {% endfor %}
                     </div>
                 {% endif %}
+                <!-- Button to return to vendor dashboard -->
+                <div class="text-end mb-3">
+                    <a href="{% url 'vendor_dashboard' %}" class="btn btn-primary me-2"><i class="fas fa-arrow-circle-left"></i> Return to Dashboard</a>
+                </div>
                 <!-- Form -->
                 <form method="post" enctype="multipart/form-data" id="soundKitForm">
                     {% csrf_token %}
@@ -103,6 +107,4 @@
         </div>
     </footer>
 </div>
-
-
 {% endblock %}
