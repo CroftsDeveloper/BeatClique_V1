@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 import stripe
 from cart.models import Cart, CartItem
 from .models import Order, OrderItem
@@ -12,8 +13,6 @@ from django.core.files.base import ContentFile
 import os
 import boto3
 from botocore.exceptions import NoCredentialsError
-
-
 
 # Set Stripe's API key
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -52,32 +51,38 @@ def create_checkout_session(request):
 
 @login_required
 def payment_success(request):
-    # Retrieve the current user's cart
-    user_cart = Cart.objects.get(user=request.user)
-    # Calculate total cost for the order
-    total_cost = sum([item.soundkit.price * item.quantity for item in user_cart.items.all()])
-    # Create an order
-    order = Order.objects.create(user=request.user, total=total_cost, paid=True)
-    for item in user_cart.items.all():
-        OrderItem.objects.create(order=order, soundkit=item.soundkit, quantity=item.quantity)
-    # Clear user's cart after successful payment
-    user_cart.delete()
+    try:
+        # Attempt to retrieve the user's cart
+        user_cart = Cart.objects.get(user=request.user)
+        
+        # Proceed with order creation and cart deletion logic only if cart exists
+        total_cost = sum([item.soundkit.price * item.quantity for item in user_cart.items.all()])
+        order = Order.objects.create(user=request.user, total=total_cost, paid=True)
+        for item in user_cart.items.all():
+            OrderItem.objects.create(order=order, soundkit=item.soundkit, quantity=item.quantity)
+        
+        # Clear user's cart after successful payment
+        user_cart.delete()
 
-    # Prepare email content
-    context = {
-        'username': request.user.username,
-        'order_id': order.id,
-        'total_amount': total_cost,
-    }
-    email_html_message = render_to_string('payments/emails/purchase_confirmation.html', context)
-    subject = 'Your BeatClique Purchase Confirmation'
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [request.user.email, ]
+        # Prepare email content
+        context = {
+            'username': request.user.username,
+            'order_id': order.id,
+            'total_amount': total_cost,
+        }
+        email_html_message = render_to_string('payments/emails/purchase_confirmation.html', context)
+        subject = 'Your BeatClique Purchase Confirmation'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [request.user.email, ]
 
-    # Send email
-    send_mail(subject, "", email_from, recipient_list, html_message=email_html_message)
-
-    # Render the payment success template
+        # Send email
+        send_mail(subject, "", email_from, recipient_list, html_message=email_html_message)
+        
+    except Cart.DoesNotExist:
+        # If the cart does not exist, log the issue or inform the user as needed
+        messages.warning(request, "Your cart does not exist. If you have already completed your payment, please ignore this message.")
+    
+    # Render the payment success template regardless of cart existence
     return render(request, 'payments/payment_success.html')
 
 @login_required
