@@ -3,18 +3,16 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section text-center py-3 bg-dark">
-    <div class="container" style="background-image: url('https://beatclique-assets.s3.eu-west-2.amazonaws.com/images/hero/hero-image.jpg'); background-size: cover; background-position: center;">
-        <div class="text-white">
-            <h1 class="display-4">Level-up Your Music Production with BeatClique</h1>
-            <p class="lead">Discover a wide range of unique, high-quality sound kits created by our team of music producers.</p>
+    <section class="hero-section text-center py-3 bg-dark">
+        <div class="container">
+            <h1 class="display-4 text-white">Level-up Your Music Production with BeatClique</h1>
+            <p class="lead text-white">Discover a wide range of unique, high-quality sound kits created by our team of music producers.</p>
             <div class="my-4">
                 <!-- Explore Soundkits button -->
                 <a href="{% url 'soundkit_list' %}" class="btn btn-success explore-button" style="margin-top: 20px;">Explore Soundkits</a>
             </div>
         </div>
-    </div>  
-</section>
+    </section>
 
 <!-- Carousel Section -->
 <section class="carousel-section" style="background-color: #212529;">
