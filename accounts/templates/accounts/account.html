@@ -20,15 +20,19 @@
                     <div class="col-auto">
                         <a href="{% url 'home' %}" class="btn btn-primary btn-md">Dashboard</a>
                     </div>
+                </div>
+                {% endif %}
+                <!-- Common content for all users -->
+                <!-- Logout button -->
+                <div class="row mb-3 justify-content-center">
                     <div class="col-auto">
-                        <!-- Logout button -->
                         <form action="{% url 'accounts:logout' %}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-md">Logout</button>
                         </form>
                     </div>
                 </div>
-                {% else %}
+                {% if not request.user.is_superuser %}
                 <!-- Heading for the account -->
                 <h2 class="text-center mb-4">Your Account <i class="fa-solid fa-user ms-2"></i></h2>
                 <!-- Displaying username -->
