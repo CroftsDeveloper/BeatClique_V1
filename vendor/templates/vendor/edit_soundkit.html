@@ -9,10 +9,6 @@
     <div class="container">
         <!-- Heading with edit icon -->
         <h1 class="text-center mb-4"><i class="fas fa-pencil-alt"></i> Edit Sound Kit</h1>
-        <!-- Button to return to vendor dashboard -->
-        <div class="text-end mb-3">
-            <a href="{% url 'vendor_dashboard' %}" class="btn btn-primary me-2"><i class="fas fa-arrow-circle-left"></i> Return to Dashboard</a>
-        </div>
         <!-- Form card -->
         <div class="card mx-auto" style="width: 75%;">
             <div class="card-body bg-white">
@@ -29,6 +25,10 @@
                         {% endfor %}
                     </div>
                 {% endif %}
+                <!-- Button to return to vendor dashboard -->
+                <div class="text-end mb-3">
+                    <a href="{% url 'vendor_dashboard' %}" class="btn btn-primary me-2"><i class="fas fa-arrow-circle-left"></i> Return to Dashboard</a>
+                </div>
                 <!-- Form -->
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}

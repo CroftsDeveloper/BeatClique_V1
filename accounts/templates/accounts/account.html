@@ -16,22 +16,11 @@
                     </div>
                 </div>
                 <!-- Button to take superuser to dashboard -->
-                <div class="row mb-3 justify-content-center">
-                    <div class="col-auto">
-                        <a href="{% url 'home' %}" class="btn btn-primary btn-md">Dashboard</a>
-                    </div>
+                <div class="text-center mb-3">
+                    <a href="{% url 'home' %}" class="btn btn-primary btn-md">Dashboard</a>
                 </div>
                 {% endif %}
                 <!-- Common content for all users -->
-                <!-- Logout button -->
-                <div class="row mb-3 justify-content-center">
-                    <div class="col-auto">
-                        <form action="{% url 'accounts:logout' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-md">Logout</button>
-                        </form>
-                    </div>
-                </div>
                 {% if not request.user.is_superuser %}
                 <!-- Heading for the account -->
                 <h2 class="text-center mb-4">Your Account <i class="fa-solid fa-user ms-2"></i></h2>
@@ -41,17 +30,19 @@
                     <p>{{ request.user.username }}</p>
                 </div>
                 <!-- Displaying user information with the option to update email -->
-                <div class="text-center">
+                <div class="text-center mb-3">
                     <form method="post" action="{% url 'accounts:account_update' %}">
                         {% csrf_token %}
-                        <div class="row mb-3">
-                            <div class="col-md-12">
+                        <div class="row mb-3 justify-content-center">
+                            <div class="col-md-6">
                                 <h4>Email:</h4>
                                 <!-- Email field allows for updates for non-superusers -->
                                 <input type="email" name="email" class="form-control" value="{{ request.user.email }}">
                             </div>
+                            <div class="col-md-2 align-self-end">
+                                <button type="submit" class="btn btn-primary btn-block">Update</button>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
                 <!-- Button to navigate to order history (only visible for non-superusers) -->
@@ -61,6 +52,13 @@
                     <a href="{% url 'payments:order_history' %}" class="btn btn-info">View Order History</a>
                 </div>
                 {% endif %}
+                <!-- Logout button -->
+                <div class="text-center mt-3">
+                    <form action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-md">Logout</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
