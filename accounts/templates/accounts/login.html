@@ -4,7 +4,7 @@
 {% block title %}Login - BeatClique{% endblock %}
 
 {% block content %}
-<!-- Black Background Section -->
+<!-- Background Section -->
 <section class="bg-dark d-flex justify-content-center align-items-center min-vh-100">
     <div class="container">
         <div class="card bg-white">
@@ -24,13 +24,13 @@
                             <form method="post">
                                 {% csrf_token %}
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Username:</label>
-                                    <input type="text" class="form-control" name="username" required id="username">
+                                    <label for="id_username" class="form-label">Username:</label>
+                                    <input type="text" class="form-control" name="username" id="id_username" autocomplete="username" required>
                                 </div>
                                 <!-- Password field -->
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password:</label>
-                                    <input type="password" class="form-control" name="password" required id="password">
+                                    <label for="id_password" class="form-label">Password:</label>
+                                    <input type="password" class="form-control" name="password" id="id_password" autocomplete="current-password" required>
                                 </div>
                                 <!-- Submit button for the form -->
                                 <div class="mb-3 d-flex justify-content-center">
