@@ -95,3 +95,8 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # Heroku settings
 import django_heroku
 django_heroku.settings(locals(), staticfiles=False)
+
+# Security settings
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
