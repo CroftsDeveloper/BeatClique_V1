@@ -2,26 +2,26 @@
 {% load static %}
 
 {% block content %}
-
-<!-- Hero Section with Background Image -->
+<!-- Hero Section -->
 <section class="hero-section text-center py-3 bg-dark">
     <div class="container">
         <h1 class="display-4 text-white">Level-up Your Music Production with BeatClique</h1>
         <p class="lead text-white">Discover a wide range of unique, high-quality sound kits created by our team of music producers.</p>
         <div class="my-4">
-            <!-- Explore Soundkits button, now centralized and green -->
+            <!-- Explore Soundkits button -->
             <a href="{% url 'soundkit_list' %}" class="btn btn-success explore-button" style="margin-top: 20px;">Explore Soundkits</a>
         </div>
     </div>
 </section>
 
-
 <!-- Carousel Section -->
 <section class="carousel-section" style="background-color: #212529;">
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
+            <!-- Carousel Items -->
             <div class="carousel-item active">
                 <div class="row g-1">
+                    <!-- Carousel Images -->
                     <div class="col-3">
                         <img src="{% static 'images/carousel/polo.jpg' %}" class="img-fluid rounded" alt="Polo">
                     </div>
@@ -36,9 +36,10 @@
                     </div>
                 </div>
             </div>
-            <!-- Second set of images -->
+            <!-- Second Set of Carousel Items (can choose different photos in real world environement) -->
             <div class="carousel-item">
                 <div class="row g-1">
+                    <!-- Carousel Images -->
                     <div class="col-3">
                         <img src="{% static 'images/carousel/polo.jpg' %}" class="img-fluid rounded" alt="Polo">
                     </div>
@@ -54,7 +55,6 @@
                 </div>
             </div>
         </div>
-        <!-- Carousel controls can be implemented later if needed -->
     </div>
 </section>
 
@@ -63,7 +63,7 @@
     <div class="container">
         <h2 class="text-center text-white mb-4">Customer Testimonials</h2>
         <div class="row">
-            <!-- Testimonial 1 -->
+            <!-- Testimonial Cards -->
             <div class="col-md-4 mb-3">
                 <div class="card testimonial-card" id="testimonial1">
                     <div class="card-body">
@@ -94,8 +94,7 @@
     </div>
 </section>
 
-
-<!-- Frequently Asked Questions Section -->
+<!-- FAQ Section -->
 <section class="faq-section py-0">
     <div class="container">
         <h2 class="text-center mb-4">Frequently Asked Questions</h2>
@@ -104,12 +103,12 @@
             <div class="accordion-item">
                 <h3 class="accordion-header" id="faqHeading1">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
-                        Are the products I purchase royalty-free?
+                        Are the products royalty-free?
                     </button>
                 </h3>
                 <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                        Soundkits are royalty-free EXCEPT for major placements (this means 500k+ monthly listeners on Spotify, as well as any sync placements). This means you do not need to split beat sales from Youtube/Beatstars.
+                        Soundkits are royalty-free EXCEPT for major placements (500k+ monthly listeners on streaming services, and sync placements). Beat sales from Youtube/Beatstars don't require splitting.
                     </div>
                 </div>
             </div>
@@ -117,12 +116,12 @@
             <div class="accordion-item">
                 <h3 class="accordion-header" id="faqHeading2">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                        What happens if anything gets placed with a sample from us?
+                        What if anything gets placed with a sample from us?
                     </button>
                 </h3>
                 <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                        We guarantee easy and hassle-free clearance if anything gets placed with a sample from our website
+                        We offer easy clearance if anything gets placed with a sample from our website. Contact us at beatclique.project@gmail.com, and we'll provide necessary paperwork.
                     </div>
                 </div>
             </div>
@@ -135,7 +134,7 @@
                 </h3>
                 <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                        Downloads of your purchased products will be instantly generated. If for any reason this does not happen, feel free to email us, and we will get back to you ASAP.
+                        Downloads of your purchased products are instantly generated and available in your account. If not, email us at beatclique.project@gmail.com for assistance.
                     </div>
                 </div>
             </div>
@@ -148,33 +147,12 @@
                 </h3>
                 <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                        Since our products are digital, we cannot offer refunds for any orders. If you are unsatisfied with your purchase or feel misinformed about a product, send us an email, and we will do our best to work with you.
+                        Since our products are digital, refunds aren't available. If unsatisfied, email us at beatclique.project@gmail.com, and we will try to resolve any issues.
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-{% comment "Newsletter Subscription Section - Commented out for potential future use" %}
-<!--
-<section class="newsletter-section py-5 bg-dark">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-3 mb-0">
-                <h2 class="text-light mb-3">Newsletter 📰</h2>
-                <p class="lead text-light">Sign up to receive updates from us!</p>
-                <form class="form-inline">
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2">
-                        <button class="btn btn-primary" type="button" id="button-addon2">Subscribe</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
--->
-{% endcomment %}
 
 {% endblock %}
