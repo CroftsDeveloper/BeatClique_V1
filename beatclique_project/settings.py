@@ -68,9 +68,9 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
-
+AWS_S3_FILE_OVERWRITE = False
 AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',  # 1 day in seconds
+    'CacheControl': 'max-age=31536000',  # 1 year in seconds
 }
 
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
@@ -91,6 +91,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS').lower() == 'true'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
 
 # Heroku settings
 import django_heroku
