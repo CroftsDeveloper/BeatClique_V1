@@ -18,10 +18,10 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading{{ soundkit.id }}">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ soundkit.id }}" aria-expanded="true" aria-controls="collapse{{ soundkit.id }}">
-                        <div class="row align-items-center">
-                            <div class="col-1">{{ forloop.counter }}</div>
-                            <div class="col">{{ soundkit.name }}</div>
-                        </div>
+                        <span class="row align-items-center">
+                            <span class="col-1">{{ forloop.counter }}</span>
+                            <span class="col">{{ soundkit.name }}</span>
+                        </span>
                     </button>
                 </h2>
                 <div id="collapse{{ soundkit.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ soundkit.id }}" data-bs-parent="#soundKitsAccordion">
