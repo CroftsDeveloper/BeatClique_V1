@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Smooth transition effect for buttons
-    const exploreButton = document.querySelector('.btn-primary');
+    var exploreButton = document.querySelector('.btn-primary');
     if (exploreButton) {
         exploreButton.addEventListener('mouseenter', function() {
             this.style.transition = 'transform 0.2s ease-in-out';
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Smooth transition effect for other buttons
-    const registerButton = document.querySelector('.btn-secondary');
+    var registerButton = document.querySelector('.btn-secondary');
     if (registerButton) {
         registerButton.addEventListener('mouseenter', function() {
             this.style.transition = 'transform 0.2s ease-in-out';
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Animation for logo on mouse hover
-    const logo = document.getElementById('logo');
+    var logo = document.getElementById('logo');
     if (logo) {
         logo.addEventListener('mouseenter', function() {
             this.style.transition = 'transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55)';
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Animation for Sound Kits link
-    const soundKitsLink = document.querySelector('.sound-kits-link');
+    var soundKitsLink = document.querySelector('.sound-kits-link');
     if (soundKitsLink) {
         soundKitsLink.addEventListener('mouseenter', function() {
             this.style.transition = 'transform 0.5s ease-in-out';
@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Animation for testimonial cards
-    const testimonialCards = document.querySelectorAll('.testimonials .card');
-    testimonialCards.forEach(card => {
+    var testimonialCards = document.querySelectorAll('.testimonials .card');
+    testimonialCards.forEach(function(card) {
         card.addEventListener('mouseenter', function() {
             this.style.transition = 'transform 0.3s ease-in-out';
             this.style.transform = 'scale(1.05) rotate(5deg)';
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Pulsating animation for price tag
-    const priceTag = document.getElementById('price-badge');
+    var priceTag = document.getElementById('price-badge');
     if (priceTag) {
         pulsate(priceTag);
     }
@@ -73,19 +73,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Function for pulsating animation
 function pulsate(element) {
-    let scale = 1;
-    const interval = setInterval(function() {
+    var scale = 1;
+    var interval = setInterval(function() {
         scale = scale === 1 ? 1.1 : 1;
-        element.style.transform = `scale(${scale})`;
+        element.style.transform = "scale(" + scale + ")";
     }, 200);
     element.dataset.interval = interval; // Store interval ID
 }
 
 // Animation for order history icon
-const orderHistoryIcon = document.getElementById('order-history-icon');
+var orderHistoryIcon = document.getElementById('order-history-icon');
 if (orderHistoryIcon) {
-    let clockwiseInterval;
-    let counterclockwiseInterval;
+    var clockwiseInterval;
+    var counterclockwiseInterval;
 
     orderHistoryIcon.addEventListener('mouseenter', function() {
         setTimeout(function() {
@@ -114,24 +114,12 @@ function rotateCounterclockwise() {
     orderHistoryIcon.style.transform = 'rotate(-10deg)';
 }
 
-// Validate cart item quantities before form submission
-function validateCartQuantities() {
-    const quantityInputs = document.querySelectorAll('input[type="number"][name^="quantity_"]');
-    for (let input of quantityInputs) {
-        if (parseInt(input.value, 10) < 1) {
-            alert('Quantity must be at least 1 for all items.');
-            return false;
-        }
-    }
-    return true;
-}
-
 // Add confirmation dialog for removing items from the cart
 document.addEventListener('DOMContentLoaded', function() {
-    const removeButtons = document.querySelectorAll('button[name="remove"]');
-    removeButtons.forEach(button => {
+    var removeButtons = document.querySelectorAll('button[name="remove"]');
+    removeButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
-            const itemName = this.closest('.list-group-item').querySelector('span').textContent;
+            var itemName = this.closest('.list-group-item').querySelector('span').textContent;
             if (!confirm(`Are you sure you want to remove ${itemName} from your cart?`)) {
                 event.preventDefault();
             }

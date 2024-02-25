@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // Add smooth transition effect to the Explore button
-    const exploreButton = document.querySelector('.btn-primary');
+    var exploreButton = document.querySelector('.btn-primary');
   
     if (exploreButton) {
         exploreButton.addEventListener('mouseenter', function() {
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // Add smooth transition effect to the Register button
-    const registerButton = document.querySelector('.btn-secondary');
+    var registerButton = document.querySelector('.btn-secondary');
   
     if (registerButton) {
         registerButton.addEventListener('mouseenter', function() {
@@ -32,13 +32,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // Select the logo container by its id
-    const logoContainer = document.getElementById('logo-container');
+    var logoContainer = document.getElementById('logo-container');
   
     if (logoContainer) {
         // Add event listener for mouse entering the logo container area
         logoContainer.addEventListener('mouseenter', function() {
             // Apply a rotation effect to the logo when mouse enters
-            const logo = this.querySelector('.navbar-logo');
+            var logo = this.querySelector('.navbar-logo');
             if (logo) {
                 logo.style.transition = 'transform 0.5s ease-in-out';
                 logo.style.transform = 'rotate(10deg)';
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Add event listener for mouse leaving the logo container area
         logoContainer.addEventListener('mouseleave', function() {
             // Revert the rotation back to its original state when mouse leaves
-            const logo = this.querySelector('.navbar-logo');
+            var logo = this.querySelector('.navbar-logo');
             if (logo) {
                 logo.style.transition = 'transform 0.5s ease-in-out';
                 logo.style.transform = 'rotate(0deg)';
