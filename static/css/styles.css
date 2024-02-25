@@ -100,14 +100,14 @@ html, body {
     .accordion-body {
         font-weight: normal;
         color: #333333;
-        font-style: bold;
+        font-style: normal; 
         padding-left: 20px;
     }
     /* Accordion answers */
     .accordion-body {
         font-weight: normal;
         color: #0f0f0f; /* Set text color to white */
-        font-style: bolder;
+        font-style: normal;
         padding-left: 20px;
     }
 
