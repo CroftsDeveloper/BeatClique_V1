@@ -32,11 +32,11 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main navigation">
             <div class="container-fluid">
                 <!-- Branding link dynamically directs based on user role -->
-                    <a class="navbar-brand" href="{% url 'home' %}">
-                        <div class="logo-container" id="logo-container">
-                            <img src="https://beatclique-assets.s3.eu-west-2.amazonaws.com/images/homepage/logo.webp" alt="BeatClique Logo" height="70" class="navbar-logo" id="logo">
-                        </div>
-                    </a>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <div class="logo-container" id="logo-container">
+                        <img src="https://beatclique-assets.s3.eu-west-2.amazonaws.com/images/homepage/logo.webp" alt="BeatClique Logo" height="70" class="navbar-logo" id="logo">
+                    </div>
+                </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -67,12 +67,16 @@
                             {% endif %}
                         {% else %}
                             <!-- Show login and register link for non-authenticated users -->
-                            <li class="nav-item">
-                                <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:login' %}">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:register' %}">Register</a>
-                            </li>
+                            {% if request.resolver_match.url_name != 'accounts:login' %}
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:login' %}">Login</a>
+                                </li>
+                            {% endif %}
+                            {% if request.resolver_match.url_name != 'accounts:register' %}
+                                <li class="nav-item">
+                                    <a class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:register' %}">Register</a>
+                                </li>
+                            {% endif %}
                         {% endif %}
                     </ul>
                 </div>
