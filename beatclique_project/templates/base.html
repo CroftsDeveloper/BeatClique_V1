@@ -24,8 +24,8 @@
     <!-- Linking to the project's stylesheet hosted on AWS S3 -->
     <link rel="stylesheet" href="https://beatclique-assets.s3.eu-west-2.amazonaws.com/css/styles.css">
 </head>
-<body>
 
+<body>
 <div class="container-custom">
     <header>
         <!-- Navigation bar setup for dynamic site-wide navigation based on user role -->
@@ -51,14 +51,14 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
-                            <!-- Account Icon -->
-                            <li class="nav-item">
-                                <a id="user-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:account' %}">
-                                    <i class="fa-solid fa-user fs-3"></i> <!-- Font Awesome user icon -->
-                                </a>
-                            </li>
-                            <!-- Cart Icon, hidden for superusers -->
-                            {% if not user.is_superuser %}
+                            {% if not request.resolver_match.url_name == 'accounts:account' %}
+                                <li class="nav-item">
+                                    <a id="user-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'accounts:account' %}">
+                                        <i class="fa-solid fa-user fs-3"></i> <!-- Font Awesome user icon -->
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if not user.is_superuser and request.resolver_match.url_name != 'cart:view_cart' %}
                                 <li class="nav-item">
                                     <a id="cart-icon" class="nav-link font-weight-bold sound-kits-link fs-5" href="{% url 'cart:view_cart' %}">
                                         <i class="fa-solid fa-cart-shopping fs-3"></i> <!-- Font Awesome cart icon -->
@@ -83,7 +83,6 @@
             </div>
         </nav>
     </header>
-    <!-- Main content area for dynamic page-specific content -->
     {% block content %}
     {% endblock content %}
 
@@ -117,7 +116,6 @@
 
 <!-- Main JavaScript file hosted on AWS S3 -->
 <script src="https://beatclique-assets.s3.eu-west-2.amazonaws.com/js/main_scripts.js"></script>
-
 
 </body>
 </html>
