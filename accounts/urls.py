@@ -12,10 +12,10 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('verify-email/<uidb64>/<token>/', views.verify_email, name='verify_email'),  # URL for email verification
 
-    # Account URLs
+    # Account URL
     path('account/', views.account_view, name='account'),  # Account details view
-    path('account/update/', views.account_update, name='account_update'),  # Account update view
 
     # Logout URL
     path('logout/', views.logout_view, name='logout'),
 ]
+

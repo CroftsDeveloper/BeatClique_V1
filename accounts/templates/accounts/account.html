@@ -29,22 +29,7 @@
                     <h3>Username:</h3>
                     <p>{{ request.user.username }}</p>
                 </div>
-                <!-- Displaying user information with the option to update email -->
-                <div class="text-center mb-3">
-                    <form method="post" action="{% url 'accounts:account_update' %}">
-                        {% csrf_token %}
-                        <div class="row mb-3 justify-content-center">
-                            <div class="col-md-6">
-                                <label for="email" class="h4">Email:</label>
-                                <input type="email" id="email" name="email" class="form-control" value="{{ request.user.email }}" aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">Enter your email address</div>
-                            </div>
-                            <div class="col-md-2 align-self-end">
-                                <button type="submit" class="btn btn-primary btn-block">Update</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                <!-- Removed form for updating email but may add back in at a later development -->
                 <!-- Button to navigate to order history (only visible for non-superusers) -->
                 <hr>
                 <h3 class="text-center my-3">Purchase History</h3>

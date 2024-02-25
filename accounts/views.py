@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
-from .forms import CustomUserCreationForm, AccountUpdateForm
+from .forms import CustomUserCreationForm
 from payments.models import Order
 
 User = get_user_model()
@@ -57,20 +57,6 @@ def account_view(request):
         messages.success(request, 'Account details updated successfully.')  # Notify user of successful update
     return render(request, 'accounts/account.html')
 
-# View for updating user account details
-@login_required
-def account_update(request):
-    if request.method == 'POST':
-        form = AccountUpdateForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Account details updated successfully.')
-            return redirect('accounts:account')  # Redirect to the account page after updating
-        else:
-            messages.error(request, 'Error updating account details. Please correct the errors below.')
-    else:
-        form = AccountUpdateForm(instance=request.user)
-    return render(request, 'accounts/account_update.html', {'form': form})
 
 # View for logging out users
 @login_required
