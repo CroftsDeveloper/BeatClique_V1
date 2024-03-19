@@ -45,3 +45,10 @@ Desktop.ini
 
 # Mac files
 .DS_Store
+
+
+# Python virtual environment directory
+env/
+
+# Compiled Python files in vendor directory
+vendor/*.pyc
