@@ -45,7 +45,11 @@ urlpatterns = [
     path('cart/', include(('cart.urls', 'cart'), namespace='cart')),  # Include URLs for cart app
 ]
 
+handler404 = 'beatclique_project.views.handler404'  # Custom view for 404 error
+handler500 = 'beatclique_project.views.handler500'  # Custom view for 500 error
+
 # Serve static and media files during development
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
