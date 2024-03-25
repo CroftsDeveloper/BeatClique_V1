@@ -87,9 +87,8 @@
             </div>
         </nav>
     </header>
-    {% block content %}
-    {% endblock content %}
 
+    <!-- Messages block above content block -->
     {% if messages %}
     <div class="container mt-3">
         {% for message in messages %}
@@ -102,6 +101,9 @@
         {% endfor %}
     </div>
     {% endif %}
+
+    {% block content %}
+    {% endblock content %}
 
     <!-- Footer section for site-wide consistency -->
     <footer class="text-center mt-0 bg-dark">
